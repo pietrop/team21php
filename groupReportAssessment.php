@@ -4,7 +4,6 @@
 */
 class GroupReportAssessment {
 	
-	var $assessmentID;
 	var $groupID;
 	var $reportID;
 function
@@ -12,7 +11,6 @@ function
 		$this->groupID = $groupID;
 		$this->reportID = $reportID;
 	}
-//stopped here. 
 
 	function getGroupID(){
 		return $this->groupID;
@@ -21,21 +19,13 @@ function
 		return $this->reportID;
 	}
 
-	function getLastName(){
-		return $this->lastName;
-	}
-
-	function getPassword(){
-		return $this->password;
-	}
-
 	/**
 	* Generation of SQL query for adding student details to "students" table
 	*/
 	function createInsertQuery(){
-		if ($this->email != null){
+		if ($this->groupID != null){
 			return 'INSERT INTO groupreportassessments()
-		 VALUES ("'.$this->email.'","'.$this->firstName.'","'.$this->lastName.'","'.$this->password.'")';
+		 VALUES ("'DEFAULT', '.$this->groupID.'","'.$this->reportID.'","'.$this->lastName.'","'.$this->password.'")';
 		} else {
 			return null;
 		}
