@@ -6,7 +6,7 @@
 		$result = mysql_query("SELECT groupID FROM `groups` WHERE 1");
 
 		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-		    echo("ID: %s ", $row["groupID"]);
+		    echo("ID: %s ". $row["groupID"]);
 		}
 
 		mysql_free_result($result);
