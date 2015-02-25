@@ -19,20 +19,13 @@
                     <b>Group</b>
                     <select name="group">
                         <?php
-                            //****DATABASE CONNECTION
-                            $hostname="127.0.0.1";
-                            $user="root";
-                            $password="root";
+                            include "../dbConnect.php";
 
-                            $conn = new mysqli($hostname,$user,$password);
-                            // Check connection
-                            if ($conn->connect_error) {
-                                die("Connection failed: " . $conn->connect_error);
-                            } else {
-                                //echo "Connection successful<br>";
-                            }
-                            $myDB = $conn->select_db("team21");
+                            //****DATABASE CONNECTION
+                            $conn = connectToDb();
+                            $conn->select_db("team21");
                             //****END OF CONNECTION PROCEDURE****
+                            
                             //QUERY TO DETERMINE AVAILABLE GROUPS
                             $query = "SELECT `groupID`, COUNT(`student_ID`) as count FROM `groups` GROUP BY `groupID`";
                             $showResult = $conn->query($query);

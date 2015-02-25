@@ -22,20 +22,11 @@
 <!--RETRIEVEING STUDENT LIST FROM DATABASE-->
 <?php
 	include "student.php";
+	include "../dbConnect.php";
 
 	//****DATABASE CONNECTION
-	$hostname="127.0.0.1";
-	$user="root";
-	$password="root";
-
-	$conn = new mysqli($hostname,$user,$password);
-	// Check connection
-	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
-	} else {
-		//echo "Connection successful<br>";
-	}
-	$myDB = $conn->select_db("team21");
+	$conn = connectToDb();
+	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
 
 	//Retrieving students from DB and storing in an Array
