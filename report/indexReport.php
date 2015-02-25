@@ -1,10 +1,10 @@
 <?php
-include "student.php";
+include "report.php";
 
-$student = new Student($_POST['email'], $_POST['firstName'], $_POST['lastName'], $_POST['password']);
+$report = new report($_POST['reportID'], $_POST['group_ID'], $_POST['abstract'], $_POST['review1'], $_POST['review2']);
 
-$email = $student->getEmail();
-echo $email;
+$abstract = $report->getAbstract();
+echo $abstract;
 
 //Database related information
 $hostname="127.0.0.1";
@@ -21,8 +21,8 @@ if ($conn->connect_error) {
 
 $myDB = $conn->select_db("team21");
 
-//$query = 'INSERT INTO students(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
-if (($query = $student->createInsertQuery()) != null){
+//$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
+if (($query = $report->createInsertQuery()) != null){
 	$result = $conn->query($query);
 	//$row = mysql_fetch_array($result);
 	//print_r($row);
