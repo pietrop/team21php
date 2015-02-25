@@ -1,13 +1,12 @@
 <?php
 /**
-* Class to represent all student related information in a Admin object
+* Class to represent all student related information in a Admin object - wrong comment, change later.
 */
 class GroupReportAssessment {
 	
 	var $groupID;
 	var $reportID;
-	function
-		 __construct($groupID, $reportID){
+	function __construct($groupID, $reportID){
 			$this->groupID = $groupID;
 			$this->reportID = $reportID;
 		}
@@ -24,8 +23,8 @@ class GroupReportAssessment {
 		*/
 		function createInsertQuery(){
 			if ($this->groupID != null){
-				return 'INSERT INTO groupreportassessment(assessmentID,group_ID,report_ID)
-			 VALUES ("'DEFAULT'","'.$this->groupID.'","'.$this->reportID.'")';
+				return 'INSERT INTO groupreportassessment(group_ID, report_ID)
+			 VALUES ("'.$this->groupID.'","'.$this->reportID.'")';
 			} else {
 				return null;
 			}
