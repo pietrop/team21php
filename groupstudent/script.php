@@ -1,18 +1,10 @@
 <?php
-//Database related information
-		$hostname="127.0.0.1";
-		$user="root";
-		$password="root";
+	include "../dbConnect.php";
 
-		$conn = new mysqli($hostname,$user,$password);
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		} else {
-			echo "Connection successful<br>";
-		}
-
-		$myDB = $conn->select_db("team21");
+	//****DATABASE CONNECTION
+	$conn = connectToDb();
+	$conn->select_db("team21");
+	//****END OF CONNECTION PROCEDURE****
 
 	//****Students INSERT query****
 		$sql = "INSERT INTO `team21`.`students` (`email`, `firstName`, `lastName`, `password`) VALUES ('example@me.com', 'John', 'Appleseed', 'appleTheBest'), ('a@b.com', 'A', 'B', 'AB'), ('nurbakimovaset@mail.ru', 'Asset', 'Nurbakimov', 'myPass'), ('gmail@gmail.com', 'Google', 'Apple', 'Password'), ('true@false.net', 'True', 'False', 'False')";
