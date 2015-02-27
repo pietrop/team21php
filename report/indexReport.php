@@ -1,10 +1,25 @@
+<html>
+<head>
+	<meta charset = "UTF-8">
+</head>
+<body>
+<header>
+	<h1>Database Project: Reports</h1>
+</header>
+<main>
+	<!--LIST OF STUDENTS FROM DATABASE-->
+<table>
+	<tr>
+		<td><b> Report ID</b></td>
+		<td><b> Group ID</b></td>
+		<td><b> Abstract </b></td>
+		<td><b> Review 1 </b></td>
+		<td><b> Review 2 </b></td>	
+	</tr>
+<!--RETRIEVEING REPORT LIST FROM DATABASE-->
+
 <?php
 include "report.php";
-
-$report = new report($_POST['reportID'], $_POST['group_ID'], $_POST['abstract'], $_POST['review1'], $_POST['review2']);
-
-$abstract = $report->getAbstract();
-echo $abstract;
 
 //Database related information
 $hostname="127.0.0.1";
@@ -21,10 +36,47 @@ if ($conn->connect_error) {
 
 $myDB = $conn->select_db("team21");
 
-//$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
-if (($query = $report->createInsertQuery()) != null){
-	$result = $conn->query($query);
-	//$row = mysql_fetch_array($result);
-	//print_r($row);
-}
+//Retrieving students from DB and storing in an Array
+	$showResult = $conn->query("Select * FROM reports");
+	while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+		$newReport = new Report($row['reportID'], $row['groupID'], $row['abstract'], $row['review1'],$row['review2']);
+		$reportsArray[] = $newReport;
+	}
+	//DETERMINING STUDENT's GORUP STATUS
+	// $whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
+	// $showResult = $conn->query($whichGroupQuery);
+	// while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+	// 	$groupsArray[] = $row;
+	// }
+	// ADDING TO HTML TABLE
+	foreach($reportsArray as $rep){
+		$groupID = null;
+		foreach($reportsArray as $group){
+			if ($report['report']==$rep->getReport()){
+				$groupID = $group['groupID'];
+			}
+		}
+		
+		echo "<tr>";
+		echo "<td>".$rep->getReportID()."</td>";
+		echo "<td>".$rep->getGroup_ID()."</td>";
+		echo "<td>".$rep->getAbstract()."</td>";
+		echo "<td>".$rep->getReview1()."</td>";
+		echo "<td>".$rep->getReview2()."</td>";
+		// echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
+		echo "</tr>";
+	}
 ?>
+
+</table>
+<br>
+<br>
+<a href="insert.php"> Add new Report </a>
+
+</main>
+
+
+</body>
+
+
+</html>
