@@ -18,22 +18,6 @@ if(isset($_POST['group']) && isset($_POST['report'])){
 	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
 
-
-	// //Database related information
-	// $hostname="127.0.0.1";
-	// $user="root";
-	// $password="root";
-
-	// $conn = new mysqli($hostname,$user,$password);
-	// // Check connection
-	// if ($conn->connect_error) {
-	//     die("Connection failed: " . $conn->connect_error);
-	// } else {
-	// 	echo "Connection successful<br>";
-	// }
-
-	// $myDB = $conn->select_db("team21");
-
 	//$query = 'INSERT INTO groupreportassessment(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
 	if (($query = $assessment->createInsertQuery()) != null){
 		$result = $conn->query($query);
