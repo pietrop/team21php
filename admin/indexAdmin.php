@@ -1,25 +1,17 @@
 <?php
 include "admin.php";
+include "../dbConnect.php";
 
 $admin = new admin($_POST['email'], $_POST['firstName'], $_POST['lastName'], $_POST['password']);
 
 $email = $admin->getEmail();
 echo $email;
 
-//Database related information
-$hostname="127.0.0.1";
-$user="root";
-$password="root";
+//****DATABASE CONNECTION
+$conn = connectToDb();
+$conn->select_db("team21");
+//****END OF CONNECTION PROCEDURE****
 
-$conn = new mysqli($hostname,$user,$password);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-	echo "Connection successful<br>";
-}
-
-$myDB = $conn->select_db("team21");
 
 //$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
 if (($query = $admin->createInsertQuery()) != null){

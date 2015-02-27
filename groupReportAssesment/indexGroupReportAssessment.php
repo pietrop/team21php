@@ -1,5 +1,6 @@
 <?php
 include "groupReportAssessment.php";
+include "../dbConnect.php";
 
 // echo "test";
 
@@ -11,20 +12,11 @@ if(isset($_POST['group']) && isset($_POST['report'])){
 	echo $_POST['group'];
 	$assessment = new GroupReportAssessment($groupID, $reportID);
 
-	//Database related information
-	$hostname="127.0.0.1";
-	$user="root";
-	$password="root";
 
-	$conn = new mysqli($hostname,$user,$password);
-	// Check connection
-	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
-	} else {
-		echo "Connection successful<br>";
-	}
-
-	$myDB = $conn->select_db("team21");
+	//****DATABASE CONNECTION
+	$conn = connectToDb();
+	$conn->select_db("team21");
+	//****END OF CONNECTION PROCEDURE****
 
 	//$query = 'INSERT INTO groupreportassessment(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
 	if (($query = $assessment->createInsertQuery()) != null){
