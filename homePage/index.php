@@ -1,3 +1,13 @@
+<?php
+ include "../dbConnect.php";
+ session_start();
+ $_SESSION['username'] = 'dilbert';
+ //****DATABASE CONNECTION
+$conn = connectToDb();
+$conn->select_db("team21");
+//****END OF CONNECTION PROCEDURE****
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,14 +31,20 @@
     <div class="container">
 
       <div class="row">
-    <h1>Hello, world!</h1>
+    <h1>Welcome to Team 21 Peer Review System</h1>
+    <h2> 
+      <?php
+        echo 'You are logged in as '.$_SESSION['username'];
+        ?>.
+    </h2>
     </div> <!-- row -->
 
     <div class="row">
       <div class="col-sm-9 col-lg-12">
-          <h2>Col 9</h2>
-
-
+        <h1>Main Menu</h1>
+          <h2><a href="../groupstudent/groups.php">Your group</a></h2>
+          <h2><a href="../report/indexReport.php">Your report</a></h2>
+          <h2><a href="../groupReportAssessment/addGroupReportAssessment.php">Make a peer assessment</a></h2>
       </div> <!-- col-9 -->
 
       <div class="col-sm-3 col-lg-12">
