@@ -1,21 +1,42 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Add new assessment</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
 
-</head>
+    <!-- Bootstrap -->
+    <link href="../bootstrap.css" rel="stylesheet">
 
-<body >
-	<header role="banner">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+
+      <div class="row">
+    <h1>Welcome to Team 21 Peer Review System</h1>
+    <h2> 
+      <?php
+        echo 'You are logged in as '.$_SESSION['username'];
+        ?>.
+    </h2>
+    </div> <!-- row -->
+
+  <header role="banner">
     </header>
-	<main role='main'>
-    	<article>
+  <main role='main'>
+      <article>
             <div class='login-forms'>
               <!--IP ADDRESS SHOULD BE CHANGED ON THE NEXT LINE-->
                 <form action="indexGroupReportAssessment.php" method="post">
                   <b>Select the group to assess</b>
-                  <select name"group">
+                  <select id="report" name="report" placeholder = "groupID">
                     <?php
                       include "../dbConnect.php";
 
@@ -42,5 +63,6 @@
             </div>
         </article>
     </main>
+  </div>
 </body>
 </html>

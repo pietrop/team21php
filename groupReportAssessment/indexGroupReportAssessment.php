@@ -4,9 +4,10 @@ include "../dbConnect.php";
 
 // echo "test";
 
-if(isset($_POST['group']) && isset($_POST['report'])){
+echo 'You are logged in as '.$_SESSION['username'];
 
-	$groupID = $_POST['group'];
+if(isset($_POST['report'])){
+
 	$reportID = $_POST['report'];
 	// echo "test2";
 	echo $_POST['group'];
@@ -18,6 +19,8 @@ if(isset($_POST['group']) && isset($_POST['report'])){
 	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
 
+	$groupID = mysql_query( SELECT * FROM 'groups' WHERE student_ID = $_SESSION['username']);
+
 	//$query = 'INSERT INTO groupreportassessment(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
 	if (($query = $assessment->createInsertQuery()) != null){
 		$result = $conn->query($query);
@@ -27,7 +30,7 @@ if(isset($_POST['group']) && isset($_POST['report'])){
 
 }else{
 	//you handle the exception
-	echo "test3";
+	echo "Could not create an assessment. Please contact adminstrator.";
 }
 
 
