@@ -1,3 +1,15 @@
+<?php
+include "groupReportAssessment.php";
+include "../dbConnect.php";
+
+// echo "test";
+session_start();
+
+// store session data
+if (isset($_SESSION['id']))
+  $_SESSION['username'] = $_SESSION['username']; // or if you have any algo.
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -38,7 +50,6 @@
                   <b>Select the group to assess</b>
                   <select id="report" name="report" placeholder = "groupID">
                     <?php
-                      include "../dbConnect.php";
 
                       //****DATABASE CONNECTION
                       $conn = connectToDb();
