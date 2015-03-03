@@ -16,7 +16,7 @@ if (isset($_SESSION['id']))
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Peer Review System - Add assessment</title>
 
     <!-- Bootstrap -->
     <link href="../bootstrap.css" rel="stylesheet">
@@ -44,9 +44,10 @@ if (isset($_SESSION['id']))
     </header>
   <main role='main'>
       <article>
-            <div class='login-forms'>
               <!--IP ADDRESS SHOULD BE CHANGED ON THE NEXT LINE-->
-                <form action="indexGroupReportAssessment.php" method="post">
+                <form role ="form" action="indexGroupReportAssessment.php" method="post">            
+                  <div class='form-group'>
+                    <BR>
                   <b>Select the group to assess</b>
                   <select id="report" name="report" placeholder = "groupID">
                     <?php
@@ -69,9 +70,9 @@ if (isset($_SESSION['id']))
                     ?>
                   </select>
                   <div class="clearer"></div>
-                  <input id="loginbtn" type="submit" value="Add">
-              </form>
-            </div>
+                 </div>
+                 <button type="submit" class="btn btn-default">Add Assessment</button>
+               </form>
         </article>
     </main>
   </div>
