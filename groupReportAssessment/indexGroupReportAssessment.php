@@ -35,7 +35,7 @@ if (isset($_SESSION['id']))
     <h1>Welcome to Team 21 Peer Review System</h1>
     <h2> 
       <?php
-        echo 'You are logged in as '.$_SESSION['username'];
+        echo 'You are logged in as '.$_SESSION['email'];
         ?>.
     </h2>
     </div> <!-- row -->
@@ -64,8 +64,10 @@ if(isset($_POST['report'])){
 	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
 
-	$query = sprintf( "SELECT groups.groupID  FROM groups WHERE groups.student_ID = '%s'",mysql_real_escape_string($_SESSION['username']));	
-	$groupID = mysql_query($query);
+	$query = sprintf( "SELECT groups.groupID  FROM groups WHERE groups.student_ID = '%s'",mysql_real_escape_string($_SESSION['email']));	
+	$result = $conn->query($query);
+  $row = $result->fetch_array(MYSQLI_ASSOC);
+  $groupID = $row['groupID'];
 	$assessment = new GroupReportAssessment($groupID, $reportID);
 
 	echo $groupID," is reviewing ",$reportID;
