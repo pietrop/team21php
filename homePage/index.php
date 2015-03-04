@@ -1,13 +1,23 @@
+<?php
+ include "../dbConnect.php";
+ session_start();
+ $_SESSION['username'] = 'kjoshimail@gmail.com';
+ //****DATABASE CONNECTION
+$conn = connectToDb();
+$conn->select_db("team21");
+//****END OF CONNECTION PROCEDURE****
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Peer Review System</title>
 
     <!-- Bootstrap -->
-    <link href="../bootstrap.min.css" rel="stylesheet">
+    <link href="../bootstrap.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,17 +31,25 @@
     <div class="container">
 
       <div class="row">
-    <h1>Hello, world!</h1>
+    <h1>Welcome to Team 21 Peer Review System</h1>
+    <h2> 
+      <?php
+        echo 'You are logged in as '.$_SESSION['username'];
+        ?>.
+    </h2>
     </div> <!-- row -->
 
     <div class="row">
-      <div class="col-sm-9 col-lg-12">
-          <h2>Col 9</h2>
-
+      <div class="col-sm-9 ">
+        <h1>Main Menu</h1>
+          <h2><a href="../groupstudent/groups.php">Your group</a></h2>
+          <h2><a href="../report/indexReport.php">Your report</a></h2>
+          <h2><a href="../groupReportAssessment/addGroupReportAssessment.php">Make a peer assessment</a></h2>
+          <button type="button" class="btn btn-default"><a href="logout.php">Logout</a></button>
 
       </div> <!-- col-9 -->
 
-      <div class="col-sm-3 col-lg-12">
+      <div class="col-sm-3 ">
 
            <h2>Col 3</h2>
       </div> <!-- col-3 -->
