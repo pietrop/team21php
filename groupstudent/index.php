@@ -1,11 +1,13 @@
+<?php
+	include "../login/loggedIn.php";
+	session_start();
+	loggedIn();
+?>
 <html>
 <head>
 	<meta charset = "UTF-8">
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="../bootstrap.css">
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -31,17 +33,21 @@
 					<li>
 						<a href="groups.php">Groups</a>
 					</li>
+                    <li>
+						<a href="../login/logout.php">Sign out</a>
+					</li>
 				</ul>
 			</div>
 		</div>
-	</nav>
+    </nav>
+    <br>
+    <br>
+    <br>
 <main>
 	<div class="container">
-		<div class="starter-template">
-			<br>
-			<br>
-			<br>
-		<h1>Database Project: Students</h1>
+    	<div class="container">
+			<h1>Database Project: Students</h1>
+        </div>
 	<!--LIST OF STUDENTS FROM DATABASE-->
 		<table class="table">
 			<tr>
@@ -87,14 +93,13 @@
 			echo "<td>".$stud->getFirstName()."</td>";
 			echo "<td>".$stud->getLastName()."</td>";
 			echo "<td>".$groupID."</td>";
-			echo '<td><a href="update.php?email='.$stud->getEmail().'&firstName='.$stud->getFirstName().'&lastName='.$stud->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
+			echo '<td><a href="update.php?email='.$stud->getEmail().'&firstName='.$stud->getFirstName().'&lastName='.$stud->getLastName().'&group='.$groupID.'"> <span class="glyphicon glyphicon-pencil"></span> </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> <span class="glyphicon glyphicon-minus"></span> </a>';
 			echo "</tr>";
 		}
 	?>
 	</table>
-<br>
-<br>
-<a href="insert.php"> Add new student </a>
+<div class="container">
+	<a href="insert.php"> <span class="glyphicon glyphicon-plus"></span> Add new student</a>
 </div>
 </div>
 </main>
