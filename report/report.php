@@ -49,6 +49,7 @@ function __construct($reportID, $group_ID, $abstract, $review1,$review2){
 	function createInsertQuery(){
 		if ($this->reportID != null){
 			return 'INSERT INTO reports(reportID, group_ID, abstract,review1, review2 )
+			
 		 VALUES ("'.$this->reportID.'","'.$this->group_ID.'","'.$abstract->abstract.'","'.$review1->review1.'","'.$review2->review2.'")';
 		} else {
 			return null;
