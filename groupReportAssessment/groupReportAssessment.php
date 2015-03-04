@@ -1,11 +1,11 @@
 <?php
 /**
-* Class to represent all student related information in a Admin object - wrong comment, change later.
+* Class to represent all student related information in a groupReportAssessment object.
 */
 class GroupReportAssessment {
 	
-	var $groupID;
-	var $reportID;
+	var $groupID; //assessor
+	var $reportID; //assessee
 	function __construct($groupID, $reportID){
 			$this->groupID = $groupID;
 			$this->reportID = $reportID;
