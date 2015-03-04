@@ -1,15 +1,54 @@
+<?php
+	include "../login/loggedIn.php";
+	session_start();
+	loggedIn();
+?>
 <html>
 <head>
 	<meta charset = "UTF-8">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="../bootstrap.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+	<title> Group & Students </title>
 </head>
 <body>
-<header>
-	<h1>Database Project: Groups</h1>
-	<a href="index.php">Students</a>
-	<a href="#">Groups</a>
-</header>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only"> Toggle Navigation </span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<span class="navbar-brand"> GC06 </span>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="index.php">Students</a>
+					</li>
+					<li class="active">
+						<a href="groups.php">Groups</a>
+					</li>
+                    <li>
+						<a href="../login/logout.php">Sign out</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 <main>
-<table>
+<br>
+<br>
+<br>
+<div class="container">
+	<div class="container">
+        <h1>Database Project: Groups</h1>
+    </div>
+<table class="table">
 	<tr>
 		<td><b> Group ID </b></td>
 		<td><b> Student 1 </b></td>
@@ -60,6 +99,7 @@
 ?>
 </tr>
 </table>
+</div>
 
 
 </main>

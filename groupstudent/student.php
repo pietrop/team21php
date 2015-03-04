@@ -13,7 +13,7 @@ class Student {
 		$this->email = $email;
 		$this->firstName = $firstName;
 		$this->lastName = $lastName;
-		$this->password = $password;
+		$this->password = md5($password);
 	}
 
 	function getEmail(){
