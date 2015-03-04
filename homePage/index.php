@@ -36,7 +36,7 @@ $conn->select_db("team21");
     <h1>Welcome to Team 21 Peer Review System</h1>
     <h2> 
       <?php
-        echo 'You are logged in as '.$_SESSION['username'];
+        echo 'You are logged in as '.$_SESSION['email'];
         ?>.
     </h2>
     </div> <!-- row -->
