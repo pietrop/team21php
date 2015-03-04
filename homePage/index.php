@@ -1,7 +1,9 @@
 <?php
  include "../dbConnect.php";
+ include "../login/loggedIn.php";
  session_start();
- $_SESSION['username'] = 'kjoshimail@gmail.com';
+ loggedIn();
+// $_SESSION['username'] = 'kjoshimail@gmail.com';
  //****DATABASE CONNECTION
 $conn = connectToDb();
 $conn->select_db("team21");
@@ -45,7 +47,7 @@ $conn->select_db("team21");
           <h2><a href="../groupstudent/groups.php">Your group</a></h2>
           <h2><a href="../report/indexReport.php">Your report</a></h2>
           <h2><a href="../groupReportAssessment/addGroupReportAssessment.php">Make a peer assessment</a></h2>
-          <button type="button" class="btn btn-default"><a href="logout.php">Logout</a></button>
+          <button type="button" class="btn btn-default"><a href="../login/logout.php">Logout</a></button>
 
       </div> <!-- col-9 -->
 

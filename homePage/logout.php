@@ -1,3 +1,4 @@
+<!-- this is not used. -->
 <?php
 	session_unset();
 	session_destroy();
