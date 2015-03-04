@@ -28,7 +28,7 @@
                     <?php
                       include "report.php";
                       //reportID  groupID
-                      $report = new report(1, 1, $_POST['abstract'], $_POST['review1'], $_POST['review2']);
+                      $report = new report(2, 2, $_POST['abstract'], $_POST['review1'], $_POST['review2']);
 
                       $abstract = $report->getAbstract();
                       echo $abstract;
@@ -51,7 +51,7 @@
                       //$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
                       if (($query = $report->createInsertQuery()) != null){
                         $result = $conn->query(
-                         "INSERT INTO `team21`.`reports` (`reportID`, `group_ID`, `abstract`, `review1`, `review2`) VALUES ('11', '11', 'Abstract test', 'Review 1 test', 'Review 2 test')"
+                         "INSERT INTO `team21`.`reports` (`reportID`, `group_ID`, `abstract`, `review1`, `review2`) VALUES ('2', '2', 'Abstract test', 'Review 1 test', 'Review 2 test')"
                           );
                         //$row = mysql_fetch_array($result);
                         //print_r($row);
