@@ -24,7 +24,7 @@
 		} else {
 			echo "Your email is ".$_SESSION['email']	;
 		}
-		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].'/team21/team21php/groupstudent/';
+		$nextPageUrl = '../groupstudent/index.php';
 		header("Location:". $nextPageUrl);
 		//echo "You are signed in as ".$row['firstName']." ".$row['lastName'];	
 	} else {
