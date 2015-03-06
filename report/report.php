@@ -48,9 +48,9 @@ function __construct($reportID, $group_ID, $abstract, $review1,$review2){
 	*/
 	function createInsertQuery(){
 		if ($this->reportID != null){
-			return 'INSERT INTO reports(reportID, group_ID, abstract,review1, review2 )
-			
-		 VALUES ("'.$this->reportID.'","'.$this->group_ID.'","'.$abstract->abstract.'","'.$review1->review1.'","'.$review2->review2.'")';
+			return 'INSERT INTO reports(group_ID, abstract,review1, review2 )
+			#Report ID removed as set auto increment in SQL db
+		 VALUES ("'.$this->group_ID.'","'.$this->abstract.'","'.$this->review1.'","'.$this->review2.'")';
 		} else {
 			return null;
 		}
