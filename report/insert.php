@@ -28,7 +28,7 @@
                     <?php
                       include "report.php";
                       //reportID  groupID
-                      $report = new report(1, 1, $_POST['abstract'], $_POST['review1'], $_POST['review2']);
+                      $report = new report(2, 2, $_POST['abstract'], $_POST['review1'], $_POST['review2']);
 
                       $abstract = $report->getAbstract();
                       echo $abstract;

@@ -39,7 +39,7 @@ $myDB = $conn->select_db("team21");
 //Retrieving students from DB and storing in an Array
 	$showResult = $conn->query("Select * FROM reports");
 	while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-		$newReport = new Report($row['reportID'], $row['groupID'], $row['abstract'], $row['review1'],$row['review2']);
+		$newReport = new Report($row['reportID'], $row['group_ID'], $row['abstract'], $row['review1'],$row['review2']);
 		$reportsArray[] = $newReport;
 	}
 	//DETERMINING STUDENT's GORUP STATUS
@@ -49,6 +49,7 @@ $myDB = $conn->select_db("team21");
 	// 	$groupsArray[] = $row;
 	// }
 	// ADDING TO HTML TABLE
+
 	foreach($reportsArray as $rep){
 		$groupID = null;
 		foreach($reportsArray as $group){
@@ -57,7 +58,6 @@ $myDB = $conn->select_db("team21");
 				echo "1";
 			}
 		}
-		
 		echo "<tr>";
 		echo "<td>".$rep->getReportID()."</td>";
 		echo "<td>".$rep->getGroup_ID()."</td>";
