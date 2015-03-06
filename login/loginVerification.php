@@ -37,5 +37,5 @@
 ?>
 
 	<script>
-		       location.href = "<?php echo $nextPageUrl; ?>";
+		location.href = "<?php echo $nextPageUrl; ?>";
 	</script>
