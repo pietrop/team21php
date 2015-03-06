@@ -3,10 +3,16 @@
 	#Making sure that email and password fields are filled
 	if (isset($_POST['email']) and isset($_POST['password'])){
 		$email = $_POST['email'];
+		echo $email;
 		$password = md5($_POST['password']); //PHP hashing is used
 	} else {
-		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-		header("Location: ".$nextPageUrl."?invalid=1");
+		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'?invalid=1';
+		//*****USING JAVASCRIPT FOR PAGE REDIRECTION*******
+		?>
+		<script>
+			location.href = "<?php echo $nextPageUrl; ?>";
+		</script>
+        <?php
 	}
 	//****DATABASE CONNECTION
 	$conn = connectToDb();
@@ -29,12 +35,13 @@
 		} else {
 			echo "Your email is ".$_SESSION['email']	;
 		}
-		header("Location:". $nextPageUrl);
-		//echo "You are signed in as ".$row['firstName']." ".$row['lastName'];	
+		 
 	} else {
 		echo "Invalid email or password";
-		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-		header("Location: ".$nextPageUrl."?invalid=1");	
+		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'?invalid=1';
 	}
-
+	//*****USING JAVASCRIPT FOR PAGE REDIRECTION*******
 ?>
+<script>
+	location.href = "<?php echo $nextPageUrl; ?>";
+</script>

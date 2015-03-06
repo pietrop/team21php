@@ -52,8 +52,9 @@ $myDB = $conn->select_db("team21");
 	foreach($reportsArray as $rep){
 		$groupID = null;
 		foreach($reportsArray as $group){
-			if ($report['report']==$rep->getReport()){
+			if ($report['report']==$rep->getReportID()){
 				$groupID = $group['groupID'];
+				echo "1";
 			}
 		}
 		

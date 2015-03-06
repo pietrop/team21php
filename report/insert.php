@@ -51,7 +51,7 @@
                       //$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
                       if (($query = $report->createInsertQuery()) != null){
                         $result = $conn->query(
-                         "INSERT INTO `team21`.`reports` (`reportID`, `group_ID`, `abstract`, `review1`, `review2`) VALUES ('11', '11', 'Abstract test', 'Review 1 test', 'Review 2 test')"
+                         "INSERT INTO `team21`.`reports` (`reportID`, `group_ID`, `abstract`, `review1`, `review2`) VALUES ('1', '1', 'Abstract', 'Review 1', 'Review 2')"
                           );
                         //$row = mysql_fetch_array($result);
                         //print_r($row);
