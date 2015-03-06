@@ -38,4 +38,4 @@
 
 	<script>
 		       location.href = "<?php echo $nextPageUrl; ?>";
-		</script>
+	</script>

@@ -79,6 +79,13 @@
                 </div>
             </div>
       </form>
+      <?php
+			if (isset($_GET['invalid'])){
+				echo '<div class="container">';
+				echo '<p class="text-center text-danger"> Please enter valid email address</p>';
+				echo '</div>';	
+			}
+		?>
     </div>
 </div>
 </body>

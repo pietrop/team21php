@@ -51,7 +51,13 @@ $myDB = $conn->select_db("team21");
 	// ADDING TO HTML TABLE
 
 	foreach($reportsArray as $rep){
-	
+		$groupID = null;
+		foreach($reportsArray as $group){
+			if ($report['report']==$rep->getReportID()){
+				$groupID = $group['groupID'];
+				echo "1";
+			}
+		}
 		echo "<tr>";
 		echo "<td>".$rep->getReportID()."</td>";
 		echo "<td>".$rep->getGroup_ID()."</td>";
