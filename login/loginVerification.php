@@ -12,8 +12,13 @@
 	$conn = connectToDb();
 	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
-	
-	$query = "SELECT * from students WHERE email='$email' and password='$password'";
+	if (!isset($_POST['admin'])){
+		$query = "SELECT * from students WHERE email='$email' and password='$password'";
+		$nextPageUrl = '../homePage/index.php';
+	} else {
+		$query = "SELECT * from admins WHERE email='$email' and password='$password'";
+		$nextPageUrl = '../groupstudent/index.php';
+	}
 	$result = $conn->query($query);
 	if (mysqli_num_rows($result) == 1) {
 		session_start();
@@ -24,7 +29,6 @@
 		} else {
 			echo "Your email is ".$_SESSION['email']	;
 		}
-		$nextPageUrl = '../homePage/index.php';
 		header("Location:". $nextPageUrl);
 		//echo "You are signed in as ".$row['firstName']." ".$row['lastName'];	
 	} else {
