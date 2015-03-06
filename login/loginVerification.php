@@ -7,6 +7,7 @@
 	} else {
 		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
 		header("Location: ".$nextPageUrl."?invalid=1");
+		exit;
 	}
 	//****DATABASE CONNECTION
 	$conn = connectToDb();
@@ -25,11 +26,16 @@
 			echo "Your email is ".$_SESSION['email']	;
 		}
 		$nextPageUrl = '../homePage/index.php';
-		header("Location:". $nextPageUrl);
+		// header("Location:". $nextPageUrl); 
+		
 		//echo "You are signed in as ".$row['firstName']." ".$row['lastName'];	
 	} else {
 		echo "Invalid email or password";
-		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']);
-		header("Location: ".$nextPageUrl."?invalid=1");	
+		$nextPageUrl = 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).'?invalid=1';
+		// header("Location: ".$nextPageUrl."?invalid=1");	
 	}
 ?>
+
+	<script>
+		       location.href = "<?php echo $nextPageUrl; ?>";
+	</script>

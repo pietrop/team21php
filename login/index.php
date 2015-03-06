@@ -41,11 +41,22 @@
                 </div>
             </div>
             <div class="form-group">
-            	<div class="col-sm-offset-2 col-sm-1">
+            	<div class="col-sm-offset-2 col-sm-10">
+                	<div class="checkbox">
+                    	<label>
+                        	<input type="checkbox" name="admin"> Login as Admin
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+            	<div class="row">
+            	<div class="col-lg-offset-2 col-sm-offset-2 col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
                 	<button type="submit" class="btn btn-primary"> Sign in </button>
                 </div>
-                <div class="col-sm-1">
+                <div class="col-xs-offset-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
                 	<a href="../groupstudent/insert.php"><button type="button" class="btn btn-default"> Register </button></a>
+                </div>
                 </div>
             </div>
         </form>

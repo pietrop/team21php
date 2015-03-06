@@ -42,7 +42,7 @@ $conn->select_db("team21");
     </div> <!-- row -->
     <div class='login-forms'>
               <!--IP ADDRESS SHOULD BE CHANGED ON THE NEXT LINE-->
-                <form action="indexReport.php" method="post">                
+                <form action="insertAction.php" method="post">
                     <br>
                     <input id="abstract" type="text" name="abstract" placeholder="abstract">
                     <br>
@@ -50,7 +50,6 @@ $conn->select_db("team21");
                     <br>
                     <input id="review2" type="text" name="review2" placeholder="review2">
                     <br>
-
                     <?php
                       include "report.php";
                       //reportID  groupID
@@ -77,7 +76,7 @@ $conn->select_db("team21");
                       //$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
                       if (($query = $report->createInsertQuery()) != null){
                         $result = $conn->query(
-                         "INSERT INTO `team21`.`reports` (`reportID`, `group_ID`, `abstract`, `review1`, `review2`) VALUES ('2', '2', 'Abstract test', 'Review 1 test', 'Review 2 test')"
+                         "INSERT INTO `team21`.`reports` (`reportID`, `group_ID`, `abstract`, `review1`, `review2`) VALUES ('1', '1', 'Abstract', 'Review 1', 'Review 2')"
                           );
                         //$row = mysql_fetch_array($result);
                         //print_r($row);
@@ -87,7 +86,6 @@ $conn->select_db("team21");
                     <input id="loginbtn" type="submit" value="Add">
               </form>
             </div>
-
   </div> <!-- container -->
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -3,9 +3,15 @@ include "student.php";
 include "../dbConnect.php";
 
 //RECEIVING FIELDS FROM update.php
-$email = $_POST['email'];
-$firstName = $_POST['firstName'];
-$lastName = $_POST['lastName'];
+if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+	$email = $_POST['email'];
+	echo "Valid email";
+} else {
+	echo "Invalid email";
+	header("Location: insert.php?invalid=1");	
+}
+$firstName = filter_var($_POST['firstName'],FILTER_SANITIZE_STRING);
+$lastName = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
 $password = $_POST['password'];
 $group = $_POST['group'];
 
