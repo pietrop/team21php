@@ -1,45 +1,13 @@
 <?php
- include "../dbConnect.php";
- include "../login/loggedIn.php";
- session_start();
- loggedIn();
-// $_SESSION['username'] = 'kjoshimail@gmail.com';
-
+ include "../navbar/navbar.php";
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peer Review System</title>
 
-    <!-- Bootstrap -->
-    <link href="../bootstrap.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-   
-    <div class="container">
-
-      <div class="row">
-    <h1>Welcome to Team 21 Peer Review System</h1>
-    <h2> 
-      <?php
-        echo 'You are logged in as '.$_SESSION['email'];
-        ?>.
-    </h2>
-    <h2><a href="../assesment/viewSelfAssessment/index.php">View assessments on your report</a></h2>
-    </div> <!-- row -->
+     
 <main>
 	<!--LIST OF STUDENTS FROM DATABASE-->
-<table>
+	
+<table class="table table-striped table-hover " >
+	 <thead>
 	<tr>
 		<td><b> Report ID</b></td>
 		<td><b> Group ID</b></td>
@@ -47,6 +15,8 @@
 		<td><b> Review 1 </b></td>
 		<td><b> Review 2 </b></td>	
 	</tr>
+	 </thead>
+	 <tbody>
 <!--RETRIEVEING REPORT LIST FROM DATABASE-->
 
 <?php
@@ -95,16 +65,12 @@ foreach($reportsArray as $rep){
 	echo "</tr>";
 }
 ?>
-
+</tbody>
 </table>
 <br>
 <br>
-<a href="insert.php"> Add new Report </a>
- </div> <!-- container -->
+<a href="insert.php" class="btn btn-primary"> Add new Report </a>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+<?php
+ include "../navbar/footer.php";
+?>

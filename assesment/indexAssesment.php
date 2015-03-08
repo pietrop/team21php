@@ -1,4 +1,4 @@
-<?php
+;<?php
 include "assesment.php";
 
 $assesment = new assesment($_POST['assesmentID'], $_POST['criteria'], $_POST['mark'], $_POST['comment']);
