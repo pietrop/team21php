@@ -64,7 +64,7 @@ if(isset($_POST['report'])){
 	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
 
-	$query = sprintf( "SELECT groups.groupID  FROM groups WHERE groups.student_ID = '%s'",mysql_real_escape_string($_SESSION['email']));	
+	$query = "SELECT groups.groupID  FROM groups WHERE groups.student_ID = '%s'",mysql_real_escape_string($_SESSION['email']);	
 	$result = $conn->query($query);
   $row = $result->fetch_array(MYSQLI_ASSOC);
   $groupID = $row['groupID'];

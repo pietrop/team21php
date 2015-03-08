@@ -35,6 +35,7 @@
         echo 'You are logged in as '.$_SESSION['email'];
         ?>.
     </h2>
+    <h2><a href="../assesment/viewSelfAssessment/index.php">View assessments on your report</a></h2>
     </div> <!-- row -->
 <main>
 	<!--LIST OF STUDENTS FROM DATABASE-->
