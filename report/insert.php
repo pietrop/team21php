@@ -48,6 +48,7 @@
                     <input id="loginbtn" type="submit" value="Add" class="btn btn-primary">
               </form>
             </div>
+            
   <?php
  include "../navbar/footer.php";
 ?>
