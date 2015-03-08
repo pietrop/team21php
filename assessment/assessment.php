@@ -40,10 +40,10 @@ function __construct($assessmentID, $criteria, $mark, $comment){
 	*/
 	function createInsertQuery(){
 		// echo "flag5";
-		if ($this->assessmentID != null){
+		if ($this->criteria != null){
 			// echo "flag6";
-			return 'INSERT INTO assessments(assessmentID, criteria, mark, comment) 
-			VALUES ("'.$this->assessmentID.'","'.$this->criteria.'","'.$this->mark.'","'.$this->comment.'")';
+			return 'INSERT INTO assessments(criteria, mark, comment) 
+			VALUES ("'.$this->criteria.'","'.$this->mark.'","'.$this->comment.'")';
 		 // echo "flag7";
 		} else {
 			// echo "flag8";
