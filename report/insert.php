@@ -35,6 +35,8 @@
 
                       $myDB = $conn->select_db("team21");
 
+
+                      //I THINK CODE BELOW CAN BE DELETED 
                       //$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
                       if (($query = $report->createInsertQuery()) != null){
                         $result = $conn->query(
@@ -43,6 +45,7 @@
                         //$row = mysql_fetch_array($result);
                         //print_r($row);
                       }
+                      //I THINK CODE ABOVE  CAN BE DELETED TILL HERE?
                       ?>
                     <div class="clearer"></div>
                     <input id="loginbtn" type="submit" value="Add" class="btn btn-primary">

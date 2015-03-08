@@ -52,8 +52,10 @@ $conn->select_db("team21");
                 <li><a href="../groupstudent/groups.php">Groups</a></li>
                 <li><a href="../report/indexReport.php">Reports</a></li>
                 <li><a href="../groupReportAssessment/addGroupReportAssessment.php">Make an assessment</a></li>
-                <li><a href="../assesment/indexAssesment.php">Assessments on your report</a></li>
+                <li><a href="../assessment/indexAssessment.php">Assessments </a></li>
+                <li><a href="../assessment/insert.php">Make Assessments</a></li>
               </ul>
+
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="caret"></span></a>
