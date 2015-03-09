@@ -1,53 +1,9 @@
 <?php
-	include "../login/loggedIn.php";
-	session_start();
-	if (!loggedIn()){
-		include "../login/redirect.php";	
-	} else if (!isAdmin()){
-		echo "You're not allowed to see this page";	
-		include "../login/redirectToNotAllowed.php";
+	include "../navbar/navbar.php";
+	if (!isAdmin()){
+		include "../login/redirectToNotAllowed.php";	
 	}
 ?>
-<html>
-<head>
-	<meta charset = "UTF-8">
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="../bootstrap.css">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-	<title> Group & Students </title>
-</head>
-<body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only"> Toggle Navigation </span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<span class="navbar-brand"> GC06 </span>
-			</div>
-			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active">
-						<a href="#">Students</a>
-					</li>
-					<li>
-						<a href="groups.php">Groups</a>
-					</li>
-                    <li>
-						<a href="../login/logout.php">Sign out</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-    </nav>
-    <br>
-    <br>
-    <br>
 <main>
 	<div class="container">
     	<div class="container">
@@ -66,12 +22,6 @@
 	<!--RETRIEVEING STUDENT LIST FROM DATABASE-->
 	<?php
 		include "student.php";
-		include "../dbConnect.php";
-
-		//****DATABASE CONNECTION
-		$conn = connectToDb();
-		$conn->select_db("team21");
-		//****END OF CONNECTION PROCEDURE****
 
 		//Retrieving students from DB and storing in an Array
 		$showResult = $conn->query("Select * FROM students");
@@ -93,7 +43,11 @@
 					$groupID = $group['groupID'];
 				}
 			}
-			echo "<tr>";
+			if ($stud->getEmail() == $_SESSION['email']){
+				echo '<tr class="info">';
+			} else {
+				echo "<tr>";
+			}
 			echo "<td>".$stud->getEmail()."</td>";
 			echo "<td>".$stud->getFirstName()."</td>";
 			echo "<td>".$stud->getLastName()."</td>";
@@ -108,9 +62,6 @@
 </div>
 </div>
 </main>
-
-
-</body>
-
-
-</html>
+<?php
+	include "../navbar/footer.php";
+?>

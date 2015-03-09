@@ -2,7 +2,9 @@
  include "../dbConnect.php";
  include "../login/loggedIn.php";
  session_start();
- loggedIn();
+ if (!loggedIn()){
+	include "../login/redirect.php";	 
+ }
 // $_SESSION['username'] = 'kjoshimail@gmail.com';
  //****DATABASE CONNECTION
 $conn = connectToDb();
