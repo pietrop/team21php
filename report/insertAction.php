@@ -35,5 +35,5 @@
       ?>
 
       <script>
-		       location.href = "indexReport.php";
+		       location.href = "showReport.php";
 	</script>

@@ -82,7 +82,7 @@ $conn->select_db("team21");
     <p class="text-primary">Welcome to Team 21 Peer Review System</p>
     <p class="text-warning"> 
       <?php
-        echo 'You are logged in as '.$_SESSION['email'];
+        echo 'You are logged in as '.$_SESSION['firstName'].' '.$_SESSION['lastName'];
         ?>.
     </p>
   </div> <!-- col -->
