@@ -1,0 +1,4 @@
+<?php
+// Send
+mail('caffeinated@example.com', 'My Subject', $message);
+?>
