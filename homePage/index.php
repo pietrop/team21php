@@ -3,15 +3,6 @@
 ?>
 
      
-      <div class="row">
-    <h1>Welcome to Team 21 Peer Review System</h1>
-    <h2> 
-      <?php
-        echo 'You are logged in as '.$_SESSION['email'];
-        ?>.
-    </h2>
-    </div> <!-- row -->
-
     <div class="row">
       <div class="col-sm-9 ">
         <h1>Main Menu</h1>
@@ -27,7 +18,7 @@
            <h2>Col 3</h2>
       </div> <!-- col-3 -->
 
-      </div> <!-- row -->
+    </div> <!-- row -->
 <?php
  include "../navbar/footer.php";
 ?>
