@@ -9,18 +9,18 @@
 <table class="table table-striped table-hover " >
 	 <thead>
 	<tr>
-		<td><b> Report ID</b></td>
-		<td><b> Group ID</b></td>
-		<td><b> Abstract </b></td>
-		<td><b> Review 1 </b></td>
-		<td><b> Review 2 </b></td>	
+		<td><b> Assessment ID</b></td>
+
+		<td><b> Criteria </b></td>
+		<td><b> Mark  </b></td>
+		<td><b> Comment  </b></td>	
 	</tr>
 	 </thead>
 	 <tbody>
 <!--RETRIEVEING REPORT LIST FROM DATABASE-->
 
 <?php
-include "report.php";
+include "assessment.php";
 // $conn = new mysqli($hostname,$user,$password);
 // // Check connection
 // if ($conn->connect_error) {
@@ -33,11 +33,12 @@ $conn = connectToDb();
 $conn->select_db("team21");
 //****END OF CONNECTION PROCEDURE****
 //Retrieving students from DB and storing in an Array
-$query = "SELECT * FROM reports";
+$query = "SELECT * FROM assessments";
 $showResult = $conn->query($query);
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-	$newReport = new Report($row['reportID'], $row['group_ID'], $row['abstract'], $row['review1'],$row['review2']);
-	$reportsArray[] = $newReport;
+	$newAssessment = new Assessment($row['assessmentID'], $row['criteria'], $row['mark'],$row['comment']);
+	$assessmentsArray[] = $newAssessment;
+
 }
 //DETERMINING STUDENT's GORUP STATUS
 // $whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
@@ -47,20 +48,14 @@ while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 // }
 // ADDING TO HTML TABLE
 
-foreach($reportsArray as $rep){
-	$groupID = null;
-	foreach($reportsArray as $group){
-		if ($report['report']==$rep->getReportID()){
-			$groupID = $group['groupID'];
-			echo "1";
-		}
-	}
+
+foreach($assessmentsArray as $rep){
+	
 	echo "<tr>";
-	echo "<td>".$rep->getReportID()."</td>";
-	echo "<td>".$rep->getGroup_ID()."</td>";
-	echo "<td>".$rep->getAbstract()."</td>";
-	echo "<td>".$rep->getReview1()."</td>";
-	echo "<td>".$rep->getReview2()."</td>";
+	echo "<td>".$rep->getAssessmentID()."</td>";
+	echo "<td>".$rep->getCriteria()."</td>";
+	echo "<td>".$rep->getMark()."</td>";
+	echo "<td>".$rep->getComment()."</td>";
 	// echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
 	echo "</tr>";
 }
@@ -69,7 +64,7 @@ foreach($reportsArray as $rep){
 </table>
 <br>
 <br>
-<a href="insert.php" class="btn btn-primary"> Add new Report </a>
+<a href="insert.php" class="btn btn-primary"> Add new Assesment </a>
 
 <?php
  include "../navbar/footer.php";
