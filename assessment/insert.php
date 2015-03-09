@@ -10,18 +10,28 @@
                   	<br>
 
                     <label for="select" class="col-lg-2 control-label">Criteria</label>
-                  	<input id="criteria" type="text" name="criteria" placeholder="Criteria" spellcheck="false" class="form-control">
-                  	<br>
+                  	<!-- <input id="criteria" type="text" name="criteria" placeholder="Criteria" spellcheck="false" class="form-control"> -->
+                  	 
+                     <!-- select needs name in select tag, and value in option tag to work -->
+                        <select class="form-control" id="criteria" name="criteria">
+                          <option  value="Readibility">Readibility</option>
+                          <option  value="Accuracy">Accuracy</option>
+                          <option  value="Creativity">Creativity</option>
+                        </select>
+
+
+                    <br>
                     <!-- <input id="mark" type="text" name="mark" placeholder="Mark" class="form-control"> -->
                     
                       <label for="select" class="col-lg-2 control-label">Mark</label>
                     
-                        <select class="form-control" id="mark">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                    <!-- not working -->
+                        <select class="form-control" id="mark" name="mark">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
                         </select>
   
   

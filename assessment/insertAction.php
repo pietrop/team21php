@@ -25,6 +25,8 @@
       //$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
       	$query = $assessment->createInsertQuery();
       	$conn->query($query);
+
+      	
  ?>
 
 	<!-- redirects using js -->
