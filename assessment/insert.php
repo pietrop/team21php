@@ -25,7 +25,7 @@
                     
                       <label for="select" class="col-lg-2 control-label">Mark</label>
                     
-                    <!-- not working -->
+                   
                         <select class="form-control" id="mark" name="mark">
                           <option value="1">1</option>
                           <option value="2">2</option>
