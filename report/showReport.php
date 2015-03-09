@@ -1,16 +1,17 @@
   <?php
-   include "../navbar/navbar.php";
-  ?>
+include "../navbar/navbar.php";
+   
+if(isset($_POST['report']))
+ $reportID = $_POST['report'];
 
-<?php 
-
+// echo $reportID;
 include "report.php";
 include "../assessment/assessment.php";
 
    $conn = connectToDb();
    $conn->select_db("team21");
 // $query = "SELECT * FROM assessments";
-$query ="SELECT `reportID`, `group_ID`, `abstract`, `review1`, `review2` FROM `reports` WHERE (reportID= 11 AND group_ID = 11);";
+$query =sprintf("SELECT `reportID`, `group_ID`, `abstract`, `review1`, `review2` FROM `reports` WHERE reportID='%s'", $reportID);
 $showResult = $conn->query($query);
 
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
@@ -59,16 +60,10 @@ echo $newReport->getReview1();
 <?php 
 echo $newReport->getReview2();
 ?>
-
       </p>
     </div>
   </div>
-
-  <!-- Show assessments for this report -->
-
-
   <!-- Make an assessment - Criteria, Mark, Comment  -->
-
   <form action="../assessment/insertAction.php" method="post">
                   <!-- changed type from text  to hidden as this should be provided by system trhough URL RESTFULL when navigation -->
                   <input id="assessmentID"  type="hidden" name="assessmentID" placeholder="assessmentID" spellcheck="false" class="form-control" >
@@ -83,14 +78,9 @@ echo $newReport->getReview2();
                           <option  value="Accuracy">Accuracy</option>
                           <option  value="Creativity">Creativity</option>
                         </select>
-
-
                     <br>
                     <!-- <input id="mark" type="text" name="mark" placeholder="Mark" class="form-control"> -->
-                    
                       <label for="select" class="col-lg-2 control-label">Mark</label>
-                    
-                   
                         <select class="form-control" id="mark" name="mark">
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -98,24 +88,37 @@ echo $newReport->getReview2();
                           <option value="4">4</option>
                           <option value="5">5</option>
                         </select>
-  
-  
-   
-
                     <br>
                    <label for="input" class="col-lg-2 control-label">Comment</label>
                     <input id="comment" type="text" name="comment" placeholder="comment" class="form-control">
-            
                     <br>
-
-
-
-
-  
                     <div class="clearer"></div>
                     <input id="loginbtn" type="submit" value="Add" class="btn btn-primary">
               </form>
+<!-- End of make assesment form -->
 
+  <!-- Show assessments for this report -->
+<?php
+$query = "SELECT * FROM assessments";
+$showResult = $conn->query($query);
+while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+  $newAssessment = new Assessment($row['assessmentID'], $row['criteria'], $row['mark'],$row['comment']);
+  $assessmentsArray[] = $newAssessment;
+
+}
+
+foreach($assessmentsArray as $rep){
+  
+
+  echo "<p>".$rep->getAssessmentID()."</p>";
+  echo "<p>".$rep->getCriteria()."</p>";
+  echo "<p>".$rep->getMark()."</p>";
+  echo "<p>".$rep->getComment()."</p>";
+  // echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
+
+}
+?>
+<br>
 
 
    <!-- </div> -->
