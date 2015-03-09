@@ -1,15 +1,4 @@
-<?php
-	include "loggedIn.php";
-	print_r($_SESSION);
-	if (loggedIn()){
-		echo "YOU'RE LOGGED IN";
-		?>
-        <script>
-			location.href = "../groupstudent/index.php";
-		</script>
-        <?php	
-	}
-?>
+
 
 <!doctype html>
 <html>
@@ -76,7 +65,13 @@
         <?php
 			if (isset($_GET['invalid'])){
 				echo '<div class="container">';
-				echo '<p class="text-center text-danger"> Invalid email or password, please try again </p>';
+				switch($_GET['invalid']){
+					case 1: 	echo '<p class="text-center text-danger"> Invalid email or password, please try again </p>';
+					break;
+					case 2: echo '<p class="text-center text-danger"> You are not logged in </p>';
+					break;
+				}
+				
 				echo '</div>';	
 			}
 		?>

@@ -1,7 +1,12 @@
 <?php
 	include "../login/loggedIn.php";
 	session_start();
-	loggedIn();
+	if (!loggedIn()){
+		include "../login/redirect.php";	
+	} else if (!isAdmin()){
+		echo "You're not allowed to see this page";	
+		include "../login/redirectToNotAllowed.php";
+	}
 ?>
 <html>
 <head>
