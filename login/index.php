@@ -2,6 +2,7 @@
 	include "loggedIn.php";
 	print_r($_SESSION);
 	if (loggedIn()){
+		echo "YOU'RE LOGGED IN";
 		?>
         <script>
 			location.href = "../groupstudent/index.php";
