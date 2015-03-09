@@ -1,3 +1,15 @@
+<?php
+	include "loggedIn.php";
+	print_r($_SESSION);
+	if (loggedIn()){
+		?>
+        <script>
+			location.href = "../groupstudent/index.php";
+		</script>
+        <?php	
+	}
+?>
+
 <!doctype html>
 <html>
 <head>
