@@ -17,6 +17,14 @@ $showResult = $conn->query($query);
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
   $newReport = new Report($row['reportID'], $row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
 }
+
+//code to obtain assessmentID
+$query =sprintf("SELECT assessmentID FROM groupreportassessment WHERE (report_ID='%s' AND group_ID='%s')", $reportID, $_SESSION['group']);
+$showResult = $conn->query($query);
+while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+  $assessmentID = $row['assessmentID'];
+}
+//end of getting assessmentID
 ?>
   <div class="panel panel-primary">
     <div class="panel-heading">
