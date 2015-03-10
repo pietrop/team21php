@@ -78,6 +78,7 @@ if(isset($_POST['report'])){
 		//print_r($row);
 	}
 
+
 }else{
 	//you handle the exception
 	echo "Could not create an assessment. Please contact adminstrator.";

@@ -8,7 +8,6 @@
 	}
 	
 	function isAdmin() {
-		$result;
 		if (!isset($_SESSION['admin'])){
 			$result = false;
 		} else if ($_SESSION['admin'] == 1){

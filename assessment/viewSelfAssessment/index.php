@@ -49,16 +49,12 @@
           $conn->select_db("team21");
           //****END OF CONNECTION PROCEDURE****
           echo "start of php";
-          $query = "SELECT groups.groupID  FROM groups WHERE groups.student_ID = ".$_SESSION[email];  
-          $result = $conn->query($query);
-          $row = $result->fetch_array(MYSQLI_ASSOC);
-          $groupID = $row['groupID'];
-          echo $groupID;
-          $query = sprintf("SELECT * FROM assessments a WHERE a.assessmentID = (SELECT gra.assessmentID FROM groupReportAssessment gra WHERE gra.report_ID = '%s')",mysql_real_escape_string($groupID));
+          $groupID = $_SESSION['group'];
+          $query = sprintf("SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = '%s')",$groupID);
           $result = $conn->query($query);
           $row = $result->fetch_array(MYSQLI_ASSOC);
           echo "test1";
-          echo $row;
+          print_r($row);
           echo "test2";
 
         ?>
