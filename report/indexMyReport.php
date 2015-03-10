@@ -1,77 +1,90 @@
-<!-- needs to be modified to show only myReports similar to showReport.php -->
-<?php
- include "../navbar/navbar.php";
-?>
+  <?php
+include "../navbar/navbar.php";
+  ?>
+   <h1>My Report</h1>
+ 
+<!-- if condition only show this if report doesn't exist already -->
+<a href="../fileUpload/upload.php"class="btn btn-primary">add a Report</a>
 
-     
-<main>
-	<!--LIST OF STUDENTS FROM DATABASE-->
-	<h1>My Report</h1>
-<table class="table table-striped table-hover " >
-	 <thead>
-	<tr>
-		<td><b> Report ID</b></td>
-		<td><b> Group ID</b></td>
-		<td><b> Abstract </b></td>
-		<td><b> Review 1 </b></td>
-		<td><b> Review 2 </b></td>	
-	</tr>
-	 </thead>
-	 <tbody>
-<!--RETRIEVEING REPORT LIST FROM DATABASE-->
-
+<!-- end of if, show report otherwise. going for only upload report once and cannot modify for now -->
+<br>
 <?php
-include "report.php";
-// $conn = new mysqli($hostname,$user,$password);
-// // Check connection
-// if ($conn->connect_error) {
-//     die("Connection failed: " . $conn->connect_error);
-// } else {
-// 	echo "DB Connection successful<br>";
-// }
- //****DATABASE CONNECTION
-$conn = connectToDb();
-$conn->select_db("team21");
-//****END OF CONNECTION PROCEDURE****
-//Retrieving students from DB and storing in an Array
-$query = "SELECT * FROM reports";
-$showResult = $conn->query($query);
+  include "report.php";
+  include "../assessment/assessment.php";
+
+    $conn = connectToDb();
+  $conn->select_db("team21");
+
+  $query =sprintf("SELECT * FROM `reports`");
+  $showResult = $conn->query($query);
+  // print_r($showResult);
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-	$newReport = new Report($row['reportID'], $row['group_ID'], $row['abstract'], $row['review1'],$row['review2']);
-	$reportsArray[] = $newReport;
-}
-//DETERMINING STUDENT's GORUP STATUS
-// $whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
-// $showResult = $conn->query($whichGroupQuery);
-// while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-// 	$groupsArray[] = $row;
-// }
-// ADDING TO HTML TABLE
+    $newReport = new Report($row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
+  }
+  
 
-foreach($reportsArray as $rep){
-	$groupID = null;
-	foreach($reportsArray as $group){
-		if ($report['report']==$rep->getReportID()){
-			$groupID = $group['groupID'];
-			echo "1";
-		}
-	}
-	echo "<tr>";
-	echo "<td>".$rep->getReportID()."</td>";
-	echo "<td>".$rep->getGroup_ID()."</td>";
-	echo "<td>".$rep->getAbstract()."</td>";
-	echo "<td>".$rep->getReview1()."</td>";
-	echo "<td>".$rep->getReview2()."</td>";
-	// echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
-	echo "</tr>";
-}
 ?>
-</tbody>
-</table>
 <br>
-<br>
-<a href="insert.php" class="btn btn-primary"> Add new Report </a>
+ <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title"> Group:
+<?php 
 
-<?php
- include "../navbar/footer.php";
+echo $newReport->getGroup_ID();
 ?>
+    Report: 
+
+      </h3>
+    </div>
+  
+    <div class="panel-body">
+    	<h4 class="list-group-item-heading">Abstract</h4>
+     <p> 
+<?php 
+
+echo $newReport->getAbstract();
+?>
+     </p>
+    </div>
+    <hr>
+    <div class="panel-body">
+    	  	<h4 class="list-group-item-heading">Review One</h4>
+    <p> 
+<?php 
+echo $newReport->getReview1();
+?>
+    </p>
+    </div>
+    <hr>
+     <div class="panel-body">
+     	  	<h4 class="list-group-item-heading">Review Two</h4>
+      <p> 
+<?php 
+echo $newReport->getReview2();
+?>
+      </p>
+    </div>
+  </div>
+
+<hr>
+
+  <!-- Asssesments -->
+
+<h1>Assesments</h1>
+ <div class="panel panel-primary">
+    <div class="panel-heading">
+    	<h4>Criteria:   Mark:</h4> 
+   </div>
+    <div class="panel-body">
+    	<h4>Comment:</h4> 
+   </div>
+      </div>
+<br>
+
+
+
+   <!-- </div> -->
+  </div>
+  <?php
+   include "../navbar/footer.php";
+  ?>

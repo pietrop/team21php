@@ -25,6 +25,7 @@ else
 	<li>File : <?php echo print_r($_FILES['file']);  ?>
 
 
+
 <h2>Inside the File:</h2>
 
 
@@ -52,15 +53,19 @@ echo $review2Text;
 echo "<hr>";
 echo "<hr><hr>";
 
-$report = new report( $_SESSION['group'], $abstractText, $review1Text, $review1Text);
+
+
+$report = new Report( $_SESSION['group'], $abstractText, $review1Text, $review1Text);
     	$query = $report->createInsertQuery();
       	$conn->query($query);
+print_r($report);
 ?>
 
+<script>
+location.href = "../report/indexMyReport.php";
+</script>
 
 <!-- http://www.tutorialspoint.com/php/php_file_uploading.htm 
 http://stackoverflow.com/questions/5299471/php-parsing-a-txt-file-->
 
-			<script>
-		       location.href = "../report/indexReport.php";
-	     </script>
+		
