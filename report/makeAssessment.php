@@ -1,32 +1,25 @@
 <?php
   include "../navbar/navbar.php";
 
-  if(isset($_POST['report']))
-    $reportID = $_POST['report'];
-
-  // echo $reportID;
+    $assessmentID = $_GET['assessmentID'];
+   // echo $_GET['assessmentID'];
+    
   include "report.php";
   include "../assessment/assessment.php";
-
-  $conn = connectToDb();
-  $conn->select_db("team21");
-  // $query = "SELECT * FROM assessments";
-  $query =sprintf("SELECT `reportID`, `group_ID`, `abstract`, `review1`, `review2` FROM `reports` WHERE reportID='%s'", $reportID);
-  $showResult = $conn->query($query);
-  print_r($showResult);
+// Query report to assess
+$query = sprintf("SELECT * FROM `groupreportassessment` AS g INNER JOIN reports AS r WHERE g.report_ID = r.reportID AND g.assessmentID =".$_GET['assessmentID']."");
+$showResult = $conn->query($query);
+  // print_r($showResult);
+// makes report object from the result fo query
   while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-    $newReport = new Report($row['reportID'], $row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
+    $newReport = new Report( $row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
   }
+  // print_r($newReport);
+  ?>
 
-  //code to obtain assessmentID
-  $query =sprintf("SELECT assessmentID FROM groupreportassessment WHERE (report_ID='%s' AND group_ID='%s')", $reportID, $_SESSION['group']);
-  $showResult = $conn->query($query);
-  while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-  $assessmentID = $row['assessmentID'];
-  }
-  //end of getting assessmentID
-?>
-  <div class="panel panel-primary">
+
+<!-- SHOW REPORT TO ASSESS -->
+<div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title"> Group:
 <?php 
@@ -34,47 +27,34 @@ echo $newReport->getGroup_ID();
 ?>
     Report: 
 
-    <?php 
-echo $newReport->getReportID();
-?>
       </h3>
     </div>
   
     <div class="panel-body">
-    	<h4 class="list-group-item-heading">Abstract</h4>
-     <p> 
-<?php 
-echo $newReport->getAbstract();
-?>
-     </p>
+      <h4 class="list-group-item-heading">Abstract</h4>
+     <p>  <?php echo $newReport->getAbstract(); ?></p>
     </div>
     <hr>
     <div class="panel-body">
-    	  	<h4 class="list-group-item-heading">Review One</h4>
-    <p> 
-<?php 
-echo $newReport->getReview1();
-?>
-    </p>
+          <h4 class="list-group-item-heading">Review One</h4>
+    <p> <?php  echo $newReport->getReview1(); ?></p>
     </div>
     <hr>
      <div class="panel-body">
-     	  	<h4 class="list-group-item-heading">Review Two</h4>
+          <h4 class="list-group-item-heading">Review Two</h4>
       <p> 
-<?php 
-echo $newReport->getReview2();
-?>
+<?php echo $newReport->getReview2(); ?>
       </p>
     </div>
   </div>
-  <!-- Make an assessment - Criteria, Mark, Comment  -->
+<!-- Make an assessment - Criteria, Mark, Comment  -->
   <form action="../assessment/insertAction.php" method="post">
                   <!-- changed type from text  to hidden as this should be provided by system trhough URL RESTFULL when navigation -->
                   <input id="assessmentID"  type="hidden" name="assessmentID" placeholder="assessmentID" spellcheck="false" class="form-control" >
                     <br>
 
                     <label for="select" class="col-lg-2 control-label">Criteria</label>
-                    <!-- <input id="criteria" type="text" name="criteria" placeholder="Criteria" spellcheck="false" class="form-control"> -->
+                    <input value="<?php echo $assessmentID ?>" type="hidden" name="assessmentID" class="form-control">
                      
                      <!-- select needs name in select tag, and value in option tag to work -->
                         <select class="form-control" id="criteria" name="criteria">
@@ -101,7 +81,7 @@ echo $newReport->getReview2();
               </form>
 <!-- End of make assesment form -->
 
-  <!-- Show assessments for this report -->
+<!-- Show assessments for this report -->
 <?php
 // $query = "SELECT * FROM assessments";
 //HARD CODED, proper queery needs to be defined.
@@ -111,29 +91,23 @@ while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 
   $newAssessment = new Assessment($row['assessmentID'], $row['criteria'], $row['mark'],$row['comment']);
   $assessmentsArray[] = $newAssessment;
-
+// print_r($assessmentsArray);
 }
 
 if (!is_null($assessmentsArray)) {
   foreach($assessmentsArray as $rep){
-  
     echo "<br>";
-    echo "<p><strong>Assessment Id: </strong>".$rep->getAssessmentID()."</p>";
-    echo "<p><strong>Criteria: </strong>".$rep->getCriteria()."</p>";
-    echo "<p><strong>Mark: </strong>".$rep->getMark()."</p>";
+    // echo "<p><strong>Assessment Id: </strong>".$rep->getAssessmentID()."</p>";
+    echo "<p><strong>Criteria: </strong>".$rep->getCriteria()." <strong>Mark: </strong>".$rep->getMark()."</p>";
     echo "<p><strong>Comment: </strong></p>";
     echo "<p>".$rep->getComment().":</p>";
     echo "<hr>";
-    echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
-
   }
 }
 ?>
 <br>
 
 
-   <!-- </div> -->
-  </div>
   <?php
    include "../navbar/footer.php";
   ?>

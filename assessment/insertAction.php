@@ -1,10 +1,11 @@
  <?php
-                      include "assessment.php";
-                      //assessment
-                       $assessment = new assessment($_POST['assessmentID'], $_POST['criteria'], $_POST['mark'], $_POST['comment']);
-                        // echo $assessment->getCriteria();
+      include "assessment.php";
+      //assessment
+       $assessment = new assessment($_POST['assessmentID'], $_POST['criteria'], $_POST['mark'], $_POST['comment']);
+         // echo $assessment->getCriteria();
+       print_r($assessment);
 
-                  
+  
 
      
       //Database related information
@@ -26,10 +27,11 @@
       	$query = $assessment->createInsertQuery();
       	$conn->query($query);
 
+
       	
  ?>
 
 	<!-- redirects using js -->
       <script>
-		       location.href = "indexAssessment.php";
-	</script>
+           location.href = "../report/myReportsToAssess.php";
+  </script>
