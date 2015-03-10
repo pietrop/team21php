@@ -1,5 +1,8 @@
 <?php
  include "../navbar/navbar.php";
+ if (!isAdmin()){
+    include "../login/redirectToNotAllowed.php";  
+  }
 ?>
   <header role="banner">
     </header>

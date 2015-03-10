@@ -48,9 +48,14 @@
           $conn = connectToDb();
           $conn->select_db("team21");
           //****END OF CONNECTION PROCEDURE****
-          echo "start of php";
           $groupID = $_SESSION['group'];
-          $query = sprintf("SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = '%s')",$groupID);
+          echo "groupID is $groupID";
+          $query = "SELECT * FROM reports WHERE reports.group_ID = 7";
+          $showResult = $conn->query($query);
+          echo "showResult is $showResult";
+          $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
+          echo "reportID is $reportID";
+          $query = "SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = $reportID)";
           $result = $conn->query($query);
           $row = $result->fetch_array(MYSQLI_ASSOC);
           echo "test1";
