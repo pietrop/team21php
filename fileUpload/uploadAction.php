@@ -1,4 +1,7 @@
 <?php
+include "../navbar/navbar.php";
+include "../report/report.php";
+
 if( $_FILES['file']['name'] != "" )
 {
    // copy( $_FILES['file']['name'], "/" ) or 
@@ -27,33 +30,37 @@ else
 
 <?php
 $uploadedReport = file_get_contents($_FILES['file']['tmp_name'], true);
-// echo $uploadedReport;
-
+ // echo $uploadedReport;
+// echo "<hr>";
 $sectionsArray = explode("\n\n", $uploadedReport);
-// echo print_r($sectionsArray);
+ // echo print_r($sectionsArray);
 echo "<hr>";
 echo $sectionsArray[0]; //abstract
 echo "<br>";
-$abstract = $sectionsArray[1];
-echo $abstract;
+$abstractText = $sectionsArray[1];
+echo $abstractText;
 echo "<hr>";
 echo $sectionsArray[2];//review 1
 echo "<br>";
-$review1 = $sectionsArray[3];
-echo $review1;
+$review1Text = $sectionsArray[3];
+echo $review1Text;
 echo "<hr>";
 echo $sectionsArray[4]; // review 2
 echo "<br>";
-$review2 =  $sectionsArray[5];
-echo $review2;
+$review2Text =  $sectionsArray[5];
+echo $review2Text;
 echo "<hr>";
+echo "<hr><hr>";
+
+$report = new report( $_SESSION['group'], $abstractText, $review1Text, $review1Text);
+    	$query = $report->createInsertQuery();
+      	$conn->query($query);
 ?>
 
 
 <!-- http://www.tutorialspoint.com/php/php_file_uploading.htm 
 http://stackoverflow.com/questions/5299471/php-parsing-a-txt-file-->
 
-
-</ul>
-</body>
-</html>
+			<script>
+		       location.href = "../report/indexReport.php";
+	     </script>
