@@ -44,18 +44,17 @@ $conn->select_db("team21");
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="/">GC06 - Team 21</a>
+              <a class="navbar-brand" href="../homePage/index.php">GC06 - Team 21</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
               <ul class="nav navbar-nav">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-                <li><a href="../groupstudent/index.php">Students</a></li> 
-                <li><a href="../groupstudent/groups.php">Groups</a></li>
-                <li><a href="../report/indexReport.php">Reports</a></li>
-                <li><a href="../groupReportAssessment/addGroupReportAssessment.php">Make an assessment</a></li>
-                <li><a href="../assessment/indexAssessment.php">Assessments </a></li>
-                <li><a href="../assessment/insert.php">Make Assessments</a></li>
+               <!--  <li><a href="../groupstudent/index.php">Students</a></li>  -->
+                <li><a href="../myGroup/index.php">My Group</a></li>
+                <li><a href="../report/indexMyReport.php">My Report</a></li>
+                <li><a href="../selectAssessment/index.php">Make Assessment</a></li>
+              
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
