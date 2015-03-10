@@ -1,30 +1,30 @@
-  <?php
-include "../navbar/navbar.php";
-   
-if(isset($_POST['report']))
- $reportID = $_POST['report'];
+<?php
+  include "../navbar/navbar.php";
 
-// echo $reportID;
-include "report.php";
-include "../assessment/assessment.php";
+  if(isset($_POST['report']))
+    $reportID = $_POST['report'];
 
-   $conn = connectToDb();
-   $conn->select_db("team21");
-// $query = "SELECT * FROM assessments";
-$query =sprintf("SELECT `reportID`, `group_ID`, `abstract`, `review1`, `review2` FROM `reports` WHERE reportID='%s'", $reportID);
-$showResult = $conn->query($query);
+  // echo $reportID;
+  include "report.php";
+  include "../assessment/assessment.php";
 
-while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-  $newReport = new Report($row['reportID'], $row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
-}
+  $conn = connectToDb();
+  $conn->select_db("team21");
+  // $query = "SELECT * FROM assessments";
+  $query =sprintf("SELECT `reportID`, `group_ID`, `abstract`, `review1`, `review2` FROM `reports` WHERE reportID='%s'", $reportID);
+  $showResult = $conn->query($query);
+  print_r($showResult);
+  while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+    $newReport = new Report($row['reportID'], $row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
+  }
 
-//code to obtain assessmentID
-$query =sprintf("SELECT assessmentID FROM groupreportassessment WHERE (report_ID='%s' AND group_ID='%s')", $reportID, $_SESSION['group']);
-$showResult = $conn->query($query);
-while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+  //code to obtain assessmentID
+  $query =sprintf("SELECT assessmentID FROM groupreportassessment WHERE (report_ID='%s' AND group_ID='%s')", $reportID, $_SESSION['group']);
+  $showResult = $conn->query($query);
+  while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
   $assessmentID = $row['assessmentID'];
-}
-//end of getting assessmentID
+  }
+  //end of getting assessmentID
 ?>
   <div class="panel panel-primary">
     <div class="panel-heading">
@@ -105,7 +105,7 @@ echo $newReport->getReview2();
 <?php
 // $query = "SELECT * FROM assessments";
 //HARD CODED, proper queery needs to be defined.
-$query = "SELECT * FROM assessments WHERE (assessmentID=11)";
+$query = "SELECT * FROM assessments WHERE (assessmentID=$assessmentID)";
 $showResult = $conn->query($query);
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 
@@ -114,17 +114,19 @@ while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 
 }
 
-foreach($assessmentsArray as $rep){
+if (!is_null($assessmentsArray)) {
+  foreach($assessmentsArray as $rep){
   
- echo "<br>";
-   echo "<p><strong>Assessment Id: </strong>".$rep->getAssessmentID()."</p>";
-   echo "<p><strong>Criteria: </strong>".$rep->getCriteria()."</p>";
-  echo "<p><strong>Mark: </strong>".$rep->getMark()."</p>";
-  echo "<p><strong>Comment: </strong></p>";
-  echo "<p>".$rep->getComment().":</p>";
-  echo "<hr>";
-  echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
+    echo "<br>";
+    echo "<p><strong>Assessment Id: </strong>".$rep->getAssessmentID()."</p>";
+    echo "<p><strong>Criteria: </strong>".$rep->getCriteria()."</p>";
+    echo "<p><strong>Mark: </strong>".$rep->getMark()."</p>";
+    echo "<p><strong>Comment: </strong></p>";
+    echo "<p>".$rep->getComment().":</p>";
+    echo "<hr>";
+    echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
 
+  }
 }
 ?>
 <br>

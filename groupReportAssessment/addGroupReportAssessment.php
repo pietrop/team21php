@@ -34,25 +34,19 @@
             ?>
           </select>
           <BR>
-          <b>Select the report to be assessed</b>
+          <b>Select the group to be assessed</b>
           <select id="report" name="report" placeholder = "groupID">
-            <?php
-
-              //****DATABASE CONNECTION
-              $conn = connectToDb();
-              $conn->select_db("team21");
-              //****END OF CONNECTION PROCEDURE****
-              
+            <?php              
               //QUERY TO DETERMINE AVAILABLE GROUPS
-              $query = "SELECT `reportID` FROM `reports`";
+              $query = "SELECT `groupID`, COUNT(`student_ID`) as count FROM `groups` GROUP BY `groupID`";
               $showResult = $conn->query($query);
               while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-                  $reportsArray[] = $row;
+                  $groupsArray2[] = $row;
               }
               //Show groups in select
-              foreach($reportsArray as $report){
-                      echo "<option value=\"".$report['reportID']."\">".$report['reportID']."</option>";
-              }
+              foreach($groupsArray2 as $group){
+                      echo "<option value=\"".$group['groupID']."\">".$group['groupID']."</option>";
+              }              
             ?>
           </select>
           <div class="clearer"></div>
