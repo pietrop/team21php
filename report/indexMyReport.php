@@ -4,7 +4,8 @@ include "../navbar/navbar.php";
    <h1>My Report</h1>
  
 <!-- if condition only show this if report doesn't exist already -->
-<a href="../fileUpload/upload.php"class="btn btn-primary">add a Report</a>
+<a href="../fileUpload/upload.php"class="btn btn-primary">add a Report  <span class="badge">.txt</span></a>
+<a href="../fileUpload/uploadXML.php"class="btn btn-primary">add a Report  <span class="badge">.xml</span></a>
 
 <!-- end of if, show report otherwise. going for only upload report once and cannot modify for now -->
 <br>
