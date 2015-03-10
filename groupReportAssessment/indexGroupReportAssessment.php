@@ -7,37 +7,31 @@ echo "test";
 
 
 <?php
-if(isset($_POST['assessor'])){
+// if(isset($_POST['assessor'])){
   $assessor = $_POST['assessor'];
 	$assessee = $_POST['assessee'];
-	echo $assessee;
-	echo $assessor;
 
-
-	//****DATABASE CONNECTION
-	$conn = connectToDb();
-	$conn->select_db("team21");
-	//****END OF CONNECTION PROCEDURE****
-
-	$query = "SELECT reports.reportID  FROM reports WHERE reports.group_ID = '%s'",mysql_real_escape_string($assessee);	
+	$query = "SELECT reports.reportID  FROM reports WHERE reports.group_ID =". $assessee;	
 	$result = $conn->query($query);
   $row = $result->fetch_array(MYSQLI_ASSOC);
-  $reportID = $row['groupID'];
+  $reportID = $row['reportID'];
 	$assessment = new GroupReportAssessment($assessor, $reportID);
 
-	echo "Group ".$assessor." is reviewing Group ".$assessee;
+	
 	//$query = 'INSERT INTO groupreportassessment(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
 	if (($query = $assessment->createInsertQuery()) != null){
 		$result = $conn->query($query);
 		//$row = mysql_fetch_array($result);
 		//print_r($row);
+    echo "Group ".$assessor." is reviewing Group ".$assessee;
 	}
 
 
-}else{
-	//you handle the exception
-	echo "Could not create an assessment. Please try again.";
-}
+// }
+// else{
+// 	//you handle the exception
+// 	echo "Could not create an assessment. Please try again.";
+// }
 
 include "../navbar/footer.php";
 

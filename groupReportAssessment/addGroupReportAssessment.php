@@ -13,14 +13,8 @@
         <div class='form-group'>
           <BR>
           <b>Select the group which should make the assessment</b>
-          <select id="group" name="group" placeholder = "groupID">
-            <?php
-
-              //****DATABASE CONNECTION
-              $conn = connectToDb();
-              $conn->select_db("team21");
-              //****END OF CONNECTION PROCEDURE****
-              
+          <select id="assessor" name="assessor">
+            <?php              
               //QUERY TO DETERMINE AVAILABLE GROUPS
               $query = "SELECT `groupID`, COUNT(`student_ID`) as count FROM `groups` GROUP BY `groupID`";
               $showResult = $conn->query($query);
@@ -35,7 +29,7 @@
           </select>
           <BR>
           <b>Select the group to be assessed</b>
-          <select id="report" name="report" placeholder = "groupID">
+          <select id="assessee" name="assessee">
             <?php              
               //QUERY TO DETERMINE AVAILABLE GROUPS
               $query = "SELECT `groupID`, COUNT(`student_ID`) as count FROM `groups` GROUP BY `groupID`";
@@ -49,6 +43,7 @@
               }              
             ?>
           </select>
+          <!-- <input type="text" name="text"></input> -->
           <div class="clearer"></div>
         </div>
        <button type="submit" class="btn btn-default">Add Assessment</button>

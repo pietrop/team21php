@@ -11,6 +11,8 @@ $conn = connectToDb();
 $conn->select_db("team21");
 //****END OF CONNECTION PROCEDURE****
 
+$admin = $_SESSION['admin'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +46,15 @@ $conn->select_db("team21");
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="../homePage/index.php">GC06 - Team 21</a>
+              <?php
+			  if ($admin == 0){?>
+              	<a class="navbar-brand" href="../homePage/index.php">GC06 - Team 21</a>
+              <?php
+			  } else {?>
+				 <a class="navbar-brand" href="#">GC06 - Team 21 (Admin)</a> 
+              <?php
+			  }
+			  ?>
             </div>
       
 
@@ -52,21 +62,29 @@ $conn->select_db("team21");
               <ul class="nav navbar-nav">
                 <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
                <!--  <li><a href="../groupstudent/index.php">Students</a></li>  -->
+               <?php
+			   if ($admin == 0){
+				?>
                 <li><a href="../myGroup/index.php">My Group</a></li>
                 <li><a href="../report/indexMyReport.php">My Report</a></li>
                 <li><a href="../report/myReportsToAssess.php">Make Assessment</a></li>
-              
+              <?php 
+			  } else {  
+			  ?>
+              	<li><a href="../groupstudent/index.php">Students</a></li>
+                <li><a href="../groupstudent/groups.php">Groups</a></li>
+                <li><a href="../report/indexReport.php">Reports</a></li>
+                <li><a href="../groupReportAssessment/addGroupReportAssessment.php">Assign assessments</a></li>
+              <?php 
+			  }  
+			  ?>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Login <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo $_SESSION['firstName']." ".$_SESSION['lastName']?> <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Log in</a></li>
                     <li><a href="../login/logout.php">Sign out</a></li>
-                    <li class="divider"></li>
-                    <li><a href="../login/index.php">Sign in</a></li>
-                    <li><a href="#">Sign up</a></li>
                   </ul>
                 </li>
               </ul>
