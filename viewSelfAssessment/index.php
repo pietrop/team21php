@@ -1,6 +1,6 @@
 <?php
-  include "../../dbConnect.php";
-  include "../../login/loggedIn.php";
+  include "../dbConnect.php";
+  include "../login/loggedIn.php";
   session_start();
   loggedIn();
   // $_SESSION['username'] = 'kjoshimail@gmail.com';
@@ -50,12 +50,12 @@
           //****END OF CONNECTION PROCEDURE****
           $groupID = $_SESSION['group'];
           echo "groupID is $groupID";
-          $query = "SELECT * FROM reports WHERE reports.group_ID = 7";
+          $query = "SELECT * FROM reports WHERE group_ID = ".$_SESSION['group']."";
           $showResult = $conn->query($query);
-          echo "showResult is $showResult";
+          //echo "showResult is $showResult";
           $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
-          echo "reportID is $reportID";
-          $query = "SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = $reportID)";
+          echo "reportID is ".$reportID['reportID'];
+          $query = "SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = ".$reportID['reportID'].")";
           $result = $conn->query($query);
           $row = $result->fetch_array(MYSQLI_ASSOC);
           echo "test1";
@@ -67,10 +67,10 @@
 
       <div class="col-sm-3 ">
         <h1>Main Menu</h1>
-        <h2><a href="../../homePage.php">Home Page</a></h2>
-        <h2><a href="../../groupstudent/groups.php">Your group</a></h2>
-        <h2><a href="../../report/indexReport.php">Your report</a></h2>
-        <h2><a href="../../groupReportAssessment/addGroupReportAssessment.php">Make a peer assessment</a></h2>
+        <h2><a href="../homePage.php">Home Page</a></h2>
+        <h2><a href="../groupstudent/groups.php">Your group</a></h2>
+        <h2><a href="../report/indexReport.php">Your report</a></h2>
+        <h2><a href="../groupReportAssessment/addGroupReportAssessment.php">Make a peer assessment</a></h2>
         <button type="button" class="btn btn-default"><a href="../../login/logout.php">Sign out</a></button>
       </div> <!-- col-3 -->
 
