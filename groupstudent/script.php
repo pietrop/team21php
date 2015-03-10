@@ -60,6 +60,7 @@
 		$sql = 'INSERT INTO `reports`(`group_ID`, `abstract`, `review1`, `review2`) VALUES (3,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")';
 		$conn->query($sql);
 		$sql = 'INSERT INTO `reports`( `group_ID`, `abstract`, `review1`, `review2`) VALUES (4,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")';
+    	$conn->query($sql);
     //****END OF QUERY****
 
 	//SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID	
