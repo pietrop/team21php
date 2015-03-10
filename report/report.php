@@ -15,8 +15,8 @@ class Report{
 	var $review2;
 
 
-function __construct($reportID, $group_ID, $abstract, $review1,$review2){
-		$this->reportID = $reportID;
+function __construct($group_ID, $abstract, $review1,$review2){
+		// $this->reportID = $reportID;
 		$this->group_ID = $group_ID;
 		$this->abstract = $abstract;
 		$this->review1 = $review1;

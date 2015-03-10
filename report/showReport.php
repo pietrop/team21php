@@ -38,11 +38,7 @@ echo $newReport->getReportID();
 ?>
       </h3>
     </div>
-  <!--   <div class="btn-group btn-group-justified">
-    <a href="#" class="btn btn-default">Rate</a>
-    <a href="#" class="btn btn-default">Comment</a>
-  </div>	
-   -->
+  
     <div class="panel-body">
     	<h4 class="list-group-item-heading">Abstract</h4>
      <p> 

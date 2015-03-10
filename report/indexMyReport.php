@@ -1,4 +1,4 @@
-<!-- for admin to view all report -->
+<!-- needs to be modified to show only myReports similar to showReport.php -->
 <?php
  include "../navbar/navbar.php";
 ?>
@@ -6,7 +6,7 @@
      
 <main>
 	<!--LIST OF STUDENTS FROM DATABASE-->
-	
+	<h1>My Report</h1>
 <table class="table table-striped table-hover " >
 	 <thead>
 	<tr>
