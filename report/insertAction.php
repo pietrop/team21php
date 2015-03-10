@@ -36,4 +36,4 @@
 
       <script>
 		       location.href = "showReport.php";
-	</script>
+	     </script>

@@ -99,9 +99,12 @@ echo $newReport->getReview2();
 
   <!-- Show assessments for this report -->
 <?php
-$query = "SELECT * FROM assessments";
+// $query = "SELECT * FROM assessments";
+//HARD CODED, proper queery needs to be defined.
+$query = "SELECT * FROM assessments WHERE (assessmentID=11)";
 $showResult = $conn->query($query);
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+
   $newAssessment = new Assessment($row['assessmentID'], $row['criteria'], $row['mark'],$row['comment']);
   $assessmentsArray[] = $newAssessment;
 
@@ -109,12 +112,14 @@ while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 
 foreach($assessmentsArray as $rep){
   
-
-  echo "<p>".$rep->getAssessmentID()."</p>";
-  echo "<p>".$rep->getCriteria()."</p>";
-  echo "<p>".$rep->getMark()."</p>";
-  echo "<p>".$rep->getComment()."</p>";
-  // echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
+ echo "<br>";
+   echo "<p><strong>Assessment Id: </strong>".$rep->getAssessmentID()."</p>";
+   echo "<p><strong>Criteria: </strong>".$rep->getCriteria()."</p>";
+  echo "<p><strong>Mark: </strong>".$rep->getMark()."</p>";
+  echo "<p><strong>Comment: </strong></p>";
+  echo "<p>".$rep->getComment().":</p>";
+  echo "<hr>";
+  echo '<td><a href="update.php?email='.$rep->getEmail().'&firstName='.$rep->getFirstName().'&lastName='.$rep->getLastName().'&group='.$groupID.'"> Update </a>&nbsp; &nbsp; <a href="delete.php?email='.$stud->getEmail().'"> Delete </a>';
 
 }
 ?>
