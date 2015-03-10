@@ -25,6 +25,7 @@ else
 	<li>File : <?php echo print_r($_FILES['file']);  ?>
 
 
+
 <h2>Inside the File:</h2>
 
 
@@ -51,6 +52,7 @@ $review2Text =  $sectionsArray[5];
 echo $review2Text;
 echo "<hr>";
 echo "<hr><hr>";
+
 
 
 $report = new Report( $_SESSION['group'], $abstractText, $review1Text, $review1Text);

@@ -3,7 +3,7 @@
 ?>
 	<h1>Your assigned peer assessments</h1>
 	<br>
-	<form role ="form" action="../report/showReport.php" method="post">            
+	<form role ="form" action="../report/myReportsToAssess.php" method="post">            
       	<div class='form-group'>
 		<b>Select the report to assess</b>
 		<select id="report" name="report" placeholder = "groupID" >

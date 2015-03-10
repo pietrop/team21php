@@ -66,6 +66,23 @@ echo $newReport->getReview2();
     </div>
   </div>
 
+<hr>
+
+  <!-- Asssesments -->
+
+<h1>Assesments</h1>
+ <div class="panel panel-primary">
+    <div class="panel-heading">
+    	<h4>Criteria:   Mark:</h4> 
+   </div>
+    <div class="panel-body">
+    	<h4>Comment:</h4> 
+   </div>
+      </div>
+<br>
+
+
+
    <!-- </div> -->
   </div>
   <?php
