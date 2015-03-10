@@ -20,5 +20,14 @@
 
 		$conn->query($sql);
 
+	//****Query to make admin****
+		$sql = "INSERT INTO `team21`.`admins` (`email`, `firstName`, `lastName`, `password`) VALUES ('admin@admin.com','Your','Mum','".md5('admin')."')";
+	//****END OF QUERY****
+		$conn->query($sql);
+
+	//QUERY TO ADD GroupReportAssessments
+		$sql = "INSERT INTO `team21`.`groupreportassessment` (`group_ID`, `report_ID`) VALUES (1,2), (1,3), (2,1), (2,4), (3,2), (3,4), (4,1), (4,3) ;";
+		$conn->query($sql);
+		
 	//SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID	
 ?>
