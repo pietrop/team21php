@@ -53,7 +53,7 @@ $conn->select_db("team21");
                <!--  <li><a href="../groupstudent/index.php">Students</a></li>  -->
                 <li><a href="../myGroup/index.php">My Group</a></li>
                 <li><a href="../report/indexMyReport.php">My Report</a></li>
-                <li><a href="../selectAssessment/index.php">Make Assessment</a></li>
+                <li><a href="../report/myReportsToAssess.php">Make Assessment</a></li>
               
               </ul>
 
