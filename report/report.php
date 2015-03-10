@@ -23,10 +23,7 @@ function __construct($group_ID, $abstract, $review1,$review2){
 		$this->review2 = $review2;
 	}
 
-	function getReportID(){ //????
-		return $this->reportID;
-	}
-
+	
 	function getGroup_ID(){
 		return $this->group_ID;
 	}
@@ -47,9 +44,8 @@ function __construct($group_ID, $abstract, $review1,$review2){
 	* Generation of SQL query for adding Assesment details to "Assesment" table
 	*/
 	function createInsertQuery(){
-		if ($this->reportID != null){
+		if ($this->group_ID != null){
 			return 'INSERT INTO reports(group_ID, abstract,review1, review2 )
-			#Report ID removed as set auto increment in SQL db
 		 VALUES ("'.$this->group_ID.'","'.$this->abstract.'","'.$this->review1.'","'.$this->review2.'")';
 		} else {
 			return null;
