@@ -19,7 +19,7 @@ if(isset($_POST['assessor'])){
 	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
 
-	$query = "SELECT reports.reportID  FROM reports WHERE reports.group_ID = '%s'",mysql_real_escape_string($assessee);	
+	$query = "SELECT reports.reportID  FROM reports WHERE reports.group_ID =". $assessee;	
 	$result = $conn->query($query);
   $row = $result->fetch_array(MYSQLI_ASSOC);
   $reportID = $row['groupID'];
@@ -34,7 +34,8 @@ if(isset($_POST['assessor'])){
 	}
 
 
-}else{
+}
+else{
 	//you handle the exception
 	echo "Could not create an assessment. Please try again.";
 }

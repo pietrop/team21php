@@ -13,7 +13,7 @@
         <div class='form-group'>
           <BR>
           <b>Select the group which should make the assessment</b>
-          <select id="group" name="group" placeholder = "groupID">
+          <select id="assessor" name="assessor">
             <?php
 
               //****DATABASE CONNECTION
@@ -35,7 +35,7 @@
           </select>
           <BR>
           <b>Select the group to be assessed</b>
-          <select id="report" name="report" placeholder = "groupID">
+          <select id="assessee" name="assessee">
             <?php              
               //QUERY TO DETERMINE AVAILABLE GROUPS
               $query = "SELECT `groupID`, COUNT(`student_ID`) as count FROM `groups` GROUP BY `groupID`";
