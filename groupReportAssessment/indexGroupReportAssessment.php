@@ -2,22 +2,18 @@
 include "../navbar/navbar.php";
 include "groupReportAssessment.php";
 echo "test";
+print_r($_POST);
 ?>
   <h1>You have assigned a peer assessment</h1>
 
 
 <?php
-if(isset($_POST['assessor'])){
+// if(isset($_POST['assessor'])){
   $assessor = $_POST['assessor'];
 	$assessee = $_POST['assessee'];
 	echo $assessee;
 	echo $assessor;
 
-
-	//****DATABASE CONNECTION
-	$conn = connectToDb();
-	$conn->select_db("team21");
-	//****END OF CONNECTION PROCEDURE****
 
 	$query = "SELECT reports.reportID  FROM reports WHERE reports.group_ID =". $assessee;	
 	$result = $conn->query($query);
@@ -34,11 +30,11 @@ if(isset($_POST['assessor'])){
 	}
 
 
-}
-else{
-	//you handle the exception
-	echo "Could not create an assessment. Please try again.";
-}
+// }
+// else{
+// 	//you handle the exception
+// 	echo "Could not create an assessment. Please try again.";
+// }
 
 include "../navbar/footer.php";
 
