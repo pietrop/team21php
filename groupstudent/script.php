@@ -5,6 +5,20 @@
 	$conn = connectToDb();
 	$conn->select_db("team21");
 	//****END OF CONNECTION PROCEDURE****
+	
+	$sql = "TRUNCATE admins";
+	$conn->query($sql);
+	$sql = "TRUNCATE students";
+	$conn->query($sql);
+	$sql = "TRUNCATE groups";
+	$conn->query($sql);
+	$sql = "TRUNCATE reports";
+	$conn->query($sql);
+	$sql = "TRUNCATE groupreportassessment";
+	$conn->query($sql);
+	$sql = "TRUNCATE assessments";
+	$conn->query($sql);
+	
 
 
 	//****Students INSERT query****
@@ -39,13 +53,13 @@
 		$sql = "ALTER TABLE 'reports' AUTO_INCREMENT = 1";
 		$conn->query($sql);
 		//Populating report for groups 1 to 4
-		$sql = "INSERT INTO `reports`(`group_ID`, `abstract`, `review1`, `review2`) VALUES (1,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")";
+		$sql = 'INSERT INTO `reports`(`group_ID`, `abstract`, `review1`, `review2`) VALUES (1,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")';
 		$conn->query($sql);
-		$sql = "INSERT INTO `reports`( `group_ID`, `abstract`, `review1`, `review2`) VALUES (2,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")";
+		$sql = 'INSERT INTO `reports`( `group_ID`, `abstract`, `review1`, `review2`) VALUES (2,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")';
 		$conn->query($sql);
-		$sql = "INSERT INTO `reports`(`group_ID`, `abstract`, `review1`, `review2`) VALUES (3,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")";
+		$sql = 'INSERT INTO `reports`(`group_ID`, `abstract`, `review1`, `review2`) VALUES (3,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")';
 		$conn->query($sql);
-		$sql = "INSERT INTO `reports`( `group_ID`, `abstract`, `review1`, `review2`) VALUES (4,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")";
+		$sql = 'INSERT INTO `reports`( `group_ID`, `abstract`, `review1`, `review2`) VALUES (4,"ABSTRACT Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","REVIEW2Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")';
     //****END OF QUERY****
 
 	//SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID	
