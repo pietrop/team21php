@@ -67,21 +67,53 @@ echo $newReport->getReview2();
 <h1>Assesments</h1>
 <h2>Ranking - 
   <?php
-    echo "string\n";
+    function averageMark($group){
+      //Notes - This function returns the average mark recieved by the given group. Argument is groupID of group in question.
+      $conn = connectToDb();
+      $conn->select_db("team21");
+      $query = "SELECT reportID FROM reports WHERE group_ID = ".$group."";
+      $showResult = $conn->query($query);
+      $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
+      $query = "SELECT assessments.assessmentID, assessments.comment, assessments.mark, assessments.criteria FROM assessments INNER JOIN groupreportassessment ON groupreportassessment.assessmentID = assessments.assessmentID WHERE groupreportassessment.report_ID = ".$reportID['reportID'].";";
+      $result = $conn->query($query);
+      while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $_comment[]=$row['comment'];
+        $_mark[]=$row['mark'];
+        $_criteria[]=$row['criteria'];
+      }
+      $_average_mark = array_sum($_mark)/sizeof($_mark);
+      return $_average_mark;
+    }
+    function ranking(){
+      //Notes - This function will return a sorted array of groups and their average marks. It is sorted in
+      //        descending order of marks. So the position of the group in the array will be the rank. 
+      $conn = connectToDb();
+      $conn->select_db("team21");
+      $query = "SELECT group_ID FROM `reports`;";
+      $result = $conn->query($query);
+      while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $averageMarkArray[$row['group_ID']] = averageMark($row['group_ID']);
+      }
+      arsort($averageMarkArray);
+      return $averageMarkArray;
+    }
+    $groupRanking = ranking();
+    echo array_search($_SESSION['group'],array_keys($groupRanking))." out of ".sizeof($groupRanking)." groups."."\r\n";
     $groupID = $_SESSION['group'];
     $query = "SELECT reportID FROM reports WHERE group_ID = ".$_SESSION['group']."";
     $showResult = $conn->query($query);
     $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
-    print_r("reportID is ".$reportID['reportID']);
     $query = "SELECT assessments.assessmentID, assessments.comment, assessments.mark, assessments.criteria FROM assessments INNER JOIN groupreportassessment ON groupreportassessment.assessmentID = assessments.assessmentID WHERE groupreportassessment.report_ID = ".$reportID['reportID'].";";
     $result = $conn->query($query);
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+      $assessmentID[]=$row['assessmentID'];
       $comment[]=$row['comment'];
       $mark[]=$row['mark'];
       $criteria[]=$row['criteria'];
     }
-    $average_mark = array_sum($mark_rankingCopy)/sizeof($mark_rankingCopy);
-    echo "Average Mark is ".$average_mark;
+    $average_mark = array_sum($mark)/sizeof($mark);
+    echo "Your group's average mark is ".$average_mark;
+
   ?>
 </h2>
 <!--Peer assessments on your report  -->
@@ -108,6 +140,13 @@ echo $newReport->getReview2();
     <?php
 
      echo "$comment[$i]\n";
+          $thisAssessment = $assessmentID[$i];
+          $query = "SELECT group_ID FROM groupreportassessment WHERE assessmentID = ".$thisAssessment.";";
+          $showResult = $conn->query($query);
+          $thisGroup = $showResult->fetch_array(MYSQLI_ASSOC);
+          $thisGroupID = $thisGroup['group_ID'];
+          $thisGroupsMarks = averageMark($thisGroup['group_ID']);
+          echo "<br><strong> The current average marks of this assessor group is $thisGroupsMarks. </strong>";
           echo "<hr>";
           }
 
