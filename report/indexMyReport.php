@@ -106,6 +106,7 @@ echo $newReport->getReview2();
     $query = "SELECT assessments.assessmentID, assessments.comment, assessments.mark, assessments.criteria FROM assessments INNER JOIN groupreportassessment ON groupreportassessment.assessmentID = assessments.assessmentID WHERE groupreportassessment.report_ID = ".$reportID['reportID'].";";
     $result = $conn->query($query);
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+      $assessmentID[]=$row['assessmentID'];
       $comment[]=$row['comment'];
       $mark[]=$row['mark'];
       $criteria[]=$row['criteria'];
@@ -139,6 +140,13 @@ echo $newReport->getReview2();
     <?php
 
      echo "$comment[$i]\n";
+          $thisAssessment = $assessmentID[$i];
+          $query = "SELECT group_ID FROM groupreportassessment WHERE assessmentID = ".$thisAssessment.";";
+          $showResult = $conn->query($query);
+          $thisGroup = $showResult->fetch_array(MYSQLI_ASSOC);
+          $thisGroupID = $thisGroup['group_ID'];
+          $thisGroupsMarks = averageMark($thisGroup['group_ID']);
+          echo "<br><strong> The current average marks of this assessor group is $thisGroupsMarks. </strong>";
           echo "<hr>";
           }
 
