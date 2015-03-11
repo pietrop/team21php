@@ -163,3 +163,7 @@ echo $newReport->getReview2();
  </div> <!-- row -->
 
    <!-- </div> -->
+
+   <?php
+ include "../navbar/footer.php";
+?>
