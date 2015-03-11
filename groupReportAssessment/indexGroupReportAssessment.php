@@ -22,7 +22,12 @@ include "groupReportAssessment.php";
 		$result = $conn->query($query);
 		//$row = mysql_fetch_array($result);
 		//print_r($row);
-    echo "Group ".$assessor." is reviewing Group ".$assessee;
+    //echo "Group ".$assessor." is reviewing Group ".$assessee;
+	?>
+	<script>
+		location.href="showAssessments.php";
+	</script>
+	<?php 
 	}
 
 
