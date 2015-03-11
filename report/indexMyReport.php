@@ -83,57 +83,45 @@ echo $newReport->getReview2();
     $query = "SELECT assessments.assessmentID, assessments.comment, assessments.mark, assessments.criteria FROM assessments INNER JOIN groupreportassessment ON groupreportassessment.assessmentID = assessments.assessmentID WHERE groupreportassessment.report_ID = ".$reportID['reportID'].";";
     $result = $conn->query($query);
     while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-      $comment_rankingCopy[]=$row['comment'];
-      $mark_rankingCopy[]=$row['mark'];
-      $criteria_rankingCopy[]=$row['criteria'];
+      $comment[]=$row['comment'];
+      $mark[]=$row['mark'];
+      $criteria[]=$row['criteria'];
     }
     $average_mark = array_sum($mark_rankingCopy)/sizeof($mark_rankingCopy);
     echo "Average Mark is ".$average_mark;
   ?>
 </h2>
- <div class="panel panel-primary">
-    <div class="panel-heading">
-    	<h4>Criteria:   Mark:</h4> 
-   </div>
-    <div class="panel-body">
-    	<h4>Comment:</h4> 
-   </div>
-      </div>
-<br>
-
-
 <!--Peer assessments on your report  -->
 
  <div class="row">
       <div class="col-sm-9 ">
         <h1>Peer assessments on your report</h1>
-        <h3>
+      
+    <div class="panel panel-primary">
+    <div class="panel-heading"> <h4>
         <?php
-
-          $groupID = $_SESSION['group'];
-
-          $query = "SELECT reportID FROM reports WHERE group_ID = ".$_SESSION['group']."";
-          $showResult = $conn->query($query);
-          // echo "showResult is $showResult";
-
-          $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
-          $query = "SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = ".$reportID['reportID'].")";
-          $result = $conn->query($query);
-           print_r($result);
-          while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-           
-            $comment[]=$row['comment'];
-           
-            $mark[]=$row['mark'];
-            $criteria[]=$row['criteria'];
-          }
           for($i =0; $i<sizeof($comment);$i++){
-            echo "Criteria - ".$criteria[$i].". Mark - ".$mark[$i].". Comment - ".$comment[$i]."\n";
-          }
-         
-        ?>
-      </h3>
-      </div> <!-- col-9 -->
+            echo "Criteria: ".$criteria[$i]." Mark: ".$mark[$i]."\n";
+          
+    ?>
+      </h4>
+</div> <!-- panel heading -->
+<div class="panel-body">
+  <h4> Comment:</h4>
+  <p>
+    <?php
 
+     echo "$comment[$i]\n";
+          }
+          ?>  
+        </p>
+     </div> <!--     panel-body -->
+  </div> <!--  panel primary -->
+
+         
+    
+
+      </div> <!-- col-9 -->
+ </div> <!-- row -->
 
    <!-- </div> -->
