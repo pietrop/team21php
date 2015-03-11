@@ -45,7 +45,7 @@
 		$conn->query($sql);
 	//****END OF QUERY****
 	//QUERY TO ADD GroupReportAssessments
-		$sql = "INSERT INTO `team21`.`groupreportassessment` (`group_ID`, `report_ID`) VALUES (1,2), (1,3), (2,1), (2,4), (3,2), (3,4), (4,1), (4,3) ;";
+		$sql = "INSERT INTO `team21`.`groupreportassessment` (`group_ID`, `report_ID`) VALUES (1,2), (1,3), (2,1), (2,4), (3,2), (3,4), (4,1), (4,3) ,(3,1);";
 		$conn->query($sql);
 	//****END OF QUERY****
 
@@ -65,8 +65,10 @@
     //****END OF QUERY****
 
 	//populating assessments table.
-		$sql = 'INSERT INTO `assessments` (`assessmentID`, `criteria`, `mark`, `comment`) VALUES (1, "Accuracy", 4, "this is a comment, 1"), (7, "Accuracy", 3, "this is a comment, 2"), (4, "Readibility", 5, "this is a comment, 3"), (6, "Readibility", 2, "this is a comment, 4"), (2, "Creativity", 5, "this is a comment, 5") ;';
+		$sql = 'INSERT INTO `assessments` (`assessmentID`, `criteria`, `mark`, `comment`) VALUES (1, "Accuracy", 4, "this is a comment, 1"), (7, "Accuracy", 3, "this is a comment, 2"), (4, "Readibility", 5, "this is a comment, 3"), (6, "Readibility", 2, "this is a comment, 4"), (2, "Creativity", 5, "this is a comment, 5"), (9,"Creativity", 2, "this is a comment, 6") ;';
 		$conn->query($sql);
 
 	//SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID	
+
+		echo "script executed";
 ?>

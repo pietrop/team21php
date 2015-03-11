@@ -100,7 +100,7 @@ if (!is_null($assessmentsArray)) {
     // echo "<p><strong>Assessment Id: </strong>".$rep->getAssessmentID()."</p>";
     echo "<p><strong>Criteria: </strong>".$rep->getCriteria()." <strong>Mark: </strong>".$rep->getMark()."</p>";
     echo "<p><strong>Comment: </strong></p>";
-    echo "<p>".$rep->getComment().":</p>";
+    echo "<p>".$rep->getComment()."</p>";
     echo "<hr>";
   }
 }

@@ -23,6 +23,9 @@ function __construct($group_ID, $abstract, $review1,$review2){
 		$this->review2 = $review2;
 	}
 
+	function getReportID(){
+		return $this->reportID;
+	}
 	
 	function getGroup_ID(){
 		return $this->group_ID;
