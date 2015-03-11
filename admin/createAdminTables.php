@@ -63,6 +63,30 @@
 				}
 			}
 		}
+		$currGroup = 0;
+		$trTagOpen = false;
+		for($i=0;$i<count($array);$i++){
+			$groupID = $array[$i]['groupID'];
+			$email = $array[$i]['email'];
+			if ($groupID != null){
+				$counter = 0;
+				if ($groupID != $currGroup){
+					if($trTagOpen){
+						echo "</tr>";
+						$trTagOpen = false;	
+					}
+					$currGroup++;	
+					$i--;
+				} else {
+					if(!$trTagOpen){
+						echo "<tr>";	
+						echo "<td>".$groupID."</td>";
+						$trTagOpen = true;
+					}
+					echo "<td>".$email."</td>";
+				}
+			}
+		}
 		while ($counter != 2){
 			echo "<td></td>";
 			$counter++;	
