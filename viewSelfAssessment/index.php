@@ -54,7 +54,7 @@
           $showResult = $conn->query($query);
           //echo "showResult is $showResult";
           $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
-          $query = "SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = ".$reportID['reportID'].")";
+          $query = "SELECT assessments.assessmentID, assessments.comment, assessments.mark, assessments.criteria FROM assessments INNER JOIN groupreportassessment ON groupreportassessment.assessmentID = assessments.assessmentID WHERE groupreportassessment.report_ID = ".$reportID;
           $result = $conn->query($query);
           while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
             $comment[]=$row['comment'];

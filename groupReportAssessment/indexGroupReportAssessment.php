@@ -1,7 +1,6 @@
 <?php
 include "../navbar/navbar.php";
 include "groupReportAssessment.php";
-echo "test";
 ?>
   <h1>You have assigned a peer assessment</h1>
 
