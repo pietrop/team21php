@@ -1,5 +1,7 @@
 <?php
 	include "../navbar/navbar.php";
+	include "../admin/createAdminTables.php";
+	include "../search/search.php";
 	if (!isAdmin()){
 		include "../login/redirectToNotAllowed.php";	
 	}
@@ -10,52 +12,38 @@
 <br>
 <div class="container">
 	<div class="container">
-        <h1>Database Project: Groups</h1>
+        <h2>Database Project: Groups</h2>
     </div>
-<table class="table">
-	<tr>
-		<td><b> Group ID </b></td>
-		<td><b> Student 1 </b></td>
-		<td><b> Student 2 </b></td>
-		<td><b> Student 3 </b></td>
-		<td><b> Actions </b></td>
-	</tr>
-<!--RETRIEVING GROUPS LIST-->
+    <form class="form-inline" action="groups.php" method="post">
+		<?php include "../search/searchForm.php"; ?>
+        <input type="hidden" name="searchFor" value="student">
+        <?php 
+			if(isset($_POST['submit']) && $_POST['search'] != ''){
+		?>
+		<div class="form-group">
+			<a href="groups.php"><button type="button" class="btn btn-default">Reset</button></a>
+		</div>
+		<?php	
+		}
+		?>
+    </form>
 <?php
 	//Retrieving GROUPS list
-	$whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
-	$showResult = $conn->query($whichGroupQuery);
-	while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-		$groupsArray[] = $row;
-	}
-	$currGroup = 0;
-	foreach($groupsArray as $group){
-		$counter = 0;
-		if ($currGroup == 0){
-			echo "<tr>";
-			echo "<td>".$group['groupID']."</td>";
-			echo "<td>".$group['email']."</td>";
-			$counter++;
-			$currGroup++;
-		} elseif ($group['groupID']==$currGroup){
-			echo "<td>".$group['email']."</td>";
-			$counter++;
-		} else {
-			echo "</tr>";
-			$counter = 0;
-			//while($currGroup != $group['groupID']){
-				$currGroup++;
-			//}
-			echo "<tr>";
-			echo "<td>".$group['groupID']."</td>";
-			echo "<td>".$group['email']."</td>";
-			$counter++;
+	if(!isset($_POST['search'])){
+		$whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
+		$showResult = $conn->query($whichGroupQuery);
+		while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+			$groupsArray[] = $row;
 		}
+	} else {
+		$groupsArray = search($_POST['search'], $_POST['searchFor'], $conn);	
 	}
-
+	if (isset($groupsArray)){
+		createGroupTable($groupsArray);
+	} else {
+		echo '<div class="container"><strong>No results</strong></div>';	
+	}
 ?>
-</tr>
-</table>
 </div>
 
 

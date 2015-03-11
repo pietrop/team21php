@@ -6,7 +6,7 @@ function search($searchTerm, $searchFor, $conn){
 			$query = "SELECT s.email, s.firstName, s.lastName, g.groupID FROM `students` AS s LEFT JOIN groups AS g ON s.email = g.student_ID WHERE (s.email LIKE '%".$searchTerm."%' OR s.firstName LIKE '%".$searchTerm."%' OR s.lastName LIKE '%".$searchTerm."%' OR g.groupID LIKE '%".$searchTerm."%')";
 		break;
 		case('group'):
-			$query = "SELECT g.groupID, s.email FROM groups AS g INNER JOIN students AS s WHERE g.student_ID = s.email AND (s.email LIKE '%".$searchTerm."%' OR s.firstName LIKE '%".$searchTerm."%' OR s.lastName LIKE '%".$searchTerm."%' OR g.groupID LIKE '%".$searchTerm."%')";
+			$query = "SELECT g.groupID, s.email FROM groups AS g INNER JOIN students AS s WHERE (g.student_ID = s.email) AND (s.email LIKE '%".$searchTerm."%' OR s.firstName LIKE '%".$searchTerm."%' OR s.lastName LIKE '%".$searchTerm."%' OR g.groupID LIKE '%".$searchTerm."%')";
 		break;
 	}
 	$result = $conn->query($query);
