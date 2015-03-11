@@ -14,5 +14,6 @@ include "../navbar/navbar.php";
 <input type="submit" value="Upload File" class="btn btn-primary btn-sm" />
 </form>
 
-</body>
-</html>
+<?php
+ include "../navbar/footer.php";
+?>

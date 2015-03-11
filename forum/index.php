@@ -122,3 +122,7 @@ echo " <h6 class='media-heading'>". $row['student_ID'] . "</h6>";
 
   </div>
 </div>
+
+<?php
+ include "../navbar/footer.php";
+?>
