@@ -74,7 +74,7 @@ $admin = $_SESSION['admin'];
               	<li><a href="../groupstudent/index.php">Students</a></li>
                 <li><a href="../groupstudent/groups.php">Groups</a></li>
                 <li><a href="../report/indexReport.php">Reports</a></li>
-                <li><a href="../groupReportAssessment/addGroupReportAssessment.php">Assign assessments</a></li>
+                <li><a href="../groupReportAssessment/showAssessments.php">Assign assessments</a></li>
               <?php 
 			  }  
 			  ?>

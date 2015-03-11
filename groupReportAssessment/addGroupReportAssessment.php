@@ -4,8 +4,6 @@
     include "../login/redirectToNotAllowed.php";  
   }
 ?>
-  <header role="banner">
-    </header>
   <main role='main'>
     <article>
       <h1>Assign groups to assess reports</h1>
