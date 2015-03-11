@@ -28,14 +28,7 @@ include "../navbar/navbar.php";
 <br>
  <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title"> Group:
-<?php 
-
-echo $newReport->getGroup_ID();
-?>
-    Report: 
-
-      </h3>
+      <h3 class="panel-title"> Group: <?php echo $newReport->getGroup_ID(); ?>'s Report </h3>
     </div>
   
     <div class="panel-body">
@@ -94,26 +87,32 @@ echo $newReport->getReview2();
 <!--Peer assessments on your report  -->
 
  <div class="row">
-      <div class="col-sm-9 ">
-        <h1>Peer assessments on your report</h1>
-      
+      <div>
+       
+      <hr>
     <div class="panel panel-primary">
-    <div class="panel-heading"> <h4>
-        <?php
-          for($i =0; $i<sizeof($comment);$i++){
-            echo "Criteria: ".$criteria[$i]." Mark: ".$mark[$i]."\n";
-          
-    ?>
-      </h4>
+    <div class="panel-heading"> <h4>Peer assessments on your report  </h4>
+       
+    
 </div> <!-- panel heading -->
 <div class="panel-body">
+ 
+   <?php
+          for($i =0; $i<sizeof($comment);$i++){
+            echo "<h4> Criteria: ".$criteria[$i]." Mark: ".$mark[$i]."</h4> \n";
+          
+    ?>
+
   <h4> Comment:</h4>
   <p>
     <?php
 
      echo "$comment[$i]\n";
+          echo "<hr>";
           }
-          ?>  
+
+          ?>
+
         </p>
      </div> <!--     panel-body -->
   </div> <!--  panel primary -->
