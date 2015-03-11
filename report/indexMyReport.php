@@ -13,13 +13,13 @@ include "../navbar/navbar.php";
   include "report.php";
   include "../assessment/assessment.php";
 
-    $conn = connectToDb();
+  $conn = connectToDb();
   $conn->select_db("team21");
 
   $query =sprintf("SELECT * FROM `reports`");
   $showResult = $conn->query($query);
   // print_r($showResult);
-while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+  while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
     $newReport = new Report($row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
   }
   
@@ -72,6 +72,25 @@ echo $newReport->getReview2();
   <!-- Asssesments -->
 
 <h1>Assesments</h1>
+<h2>Ranking - 
+  <?php
+    echo "string\n";
+    $groupID = $_SESSION['group'];
+    $query = "SELECT reportID FROM reports WHERE group_ID = ".$_SESSION['group']."";
+    $showResult = $conn->query($query);
+    $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
+    print_r("reportID is ".$reportID['reportID']);
+    $query = "SELECT assessments.assessmentID, assessments.comment, assessments.mark, assessments.criteria FROM assessments INNER JOIN groupreportassessment ON groupreportassessment.assessmentID = assessments.assessmentID WHERE groupreportassessment.report_ID = ".$reportID['reportID'].";";
+    $result = $conn->query($query);
+    while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+      $comment_rankingCopy[]=$row['comment'];
+      $mark_rankingCopy[]=$row['mark'];
+      $criteria_rankingCopy[]=$row['criteria'];
+    }
+    $average_mark = array_sum($mark_rankingCopy)/sizeof($mark_rankingCopy);
+    echo "Average Mark is ".$average_mark;
+  ?>
+</h2>
  <div class="panel panel-primary">
     <div class="panel-heading">
     	<h4>Criteria:   Mark:</h4> 
