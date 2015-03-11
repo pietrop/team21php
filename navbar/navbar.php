@@ -68,6 +68,7 @@ $admin = $_SESSION['admin'];
                 <li><a href="../myGroup/index.php">My Group</a></li>
                 <li><a href="../report/indexMyReport.php">My Report</a></li>
                 <li><a href="../report/myReportsToAssess.php">Make Assessment</a></li>
+                <li><a href="../forum/index.php">Forum</a></li>
               <?php 
 			  } else {  
 			  ?>
@@ -75,6 +76,7 @@ $admin = $_SESSION['admin'];
                 <li><a href="../groupstudent/groups.php">Groups</a></li>
                 <li><a href="../report/indexReport.php">Reports</a></li>
                 <li><a href="../groupReportAssessment/showAssessments.php">Assign assessments</a></li>
+                <li><a href="../forum/index.php">Forum</a></li>
               <?php 
 			  }  
 			  ?>
@@ -98,13 +100,15 @@ $admin = $_SESSION['admin'];
 
 <!-- Login notificaiton system -->
     <div class="row">
-      <div class="col-lg-10 col-md-10  col-sm-10 col-xs-10">
-    <p class="text-primary">Welcome to Team 21 Peer Review System</p>
-    <p class="text-warning"> 
+      <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
+        <div class="alert alert-success" role="alert">Welcome to <strong>Team 21</strong> Peer Review System</div>
+    <p class="text-primary"></p>
+ 
+<div class="alert alert-info" role="alert">
       <?php
-        echo 'You are logged in as '.$_SESSION['firstName'].' '.$_SESSION['lastName'];
+        echo 'You are logged in as <strong>'.$_SESSION['firstName'].' '.$_SESSION['lastName'].'</strong>';
         ?>.
-    </p>
+  </div>
   </div> <!-- col -->
     </div> <!-- row -->
 

@@ -5,7 +5,14 @@
      
     <div class="container">
   <div class="jumbotron">
-<h1>Welcome!</h1><h2>To GC06 - Team 21 Peer Assesment</h2>
+
+  	<div class="page-header">
+  <h1>Welcome!
+  	<br><small>To GC06 - Team 21 Peer Assesment</small></h1>
+</div>
+
+
+
   </div>
 </div>
 <?php
