@@ -37,4 +37,6 @@
  ?>
 
 	<!-- redirects using js -->
-   
+        <script>
+           location.href = "index.php";
+  </script>
