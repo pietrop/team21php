@@ -83,9 +83,38 @@ echo $newReport->getReview2();
 <br>
 
 
+<!--Peer assessments on your report  -->
+
+ <div class="row">
+      <div class="col-sm-9 ">
+        <h1>Peer assessments on your report</h1>
+        <h3>
+        <?php
+
+          $groupID = $_SESSION['group'];
+
+          $query = "SELECT reportID FROM reports WHERE group_ID = ".$_SESSION['group']."";
+          $showResult = $conn->query($query);
+          // echo "showResult is $showResult";
+
+          $reportID = $showResult->fetch_array(MYSQLI_ASSOC);
+          $query = "SELECT * FROM assessments WHERE assessmentID = (SELECT assessmentID FROM groupReportAssessment WHERE report_ID = ".$reportID['reportID'].")";
+          $result = $conn->query($query);
+           print_r($result);
+          while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+           
+            $comment[]=$row['comment'];
+           
+            $mark[]=$row['mark'];
+            $criteria[]=$row['criteria'];
+          }
+          for($i =0; $i<sizeof($comment);$i++){
+            echo "Criteria - ".$criteria[$i].". Mark - ".$mark[$i].". Comment - ".$comment[$i]."\n";
+          }
+         
+        ?>
+      </h3>
+      </div> <!-- col-9 -->
+
 
    <!-- </div> -->
-  </div>
-  <?php
-   include "../navbar/footer.php";
-  ?>
