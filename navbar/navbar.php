@@ -100,13 +100,15 @@ $admin = $_SESSION['admin'];
 
 <!-- Login notificaiton system -->
     <div class="row">
-      <div class="col-lg-10 col-md-10  col-sm-10 col-xs-10">
-    <p class="text-primary">Welcome to Team 21 Peer Review System</p>
-    <p class="text-warning"> 
+      <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
+        <div class="alert alert-success" role="alert">Welcome to <strong>Team 21</strong> Peer Review System</div>
+    <p class="text-primary"></p>
+ 
+<div class="alert alert-info" role="alert">
       <?php
-        echo 'You are logged in as '.$_SESSION['firstName'].' '.$_SESSION['lastName'];
+        echo 'You are logged in as <strong>'.$_SESSION['firstName'].' '.$_SESSION['lastName'].'</strong>';
         ?>.
-    </p>
+  </div>
   </div> <!-- col -->
     </div> <!-- row -->
 
