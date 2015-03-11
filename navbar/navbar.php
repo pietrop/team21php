@@ -68,6 +68,7 @@ $admin = $_SESSION['admin'];
                 <li><a href="../myGroup/index.php">My Group</a></li>
                 <li><a href="../report/indexMyReport.php">My Report</a></li>
                 <li><a href="../report/myReportsToAssess.php">Make Assessment</a></li>
+                <li><a href="../forum/index.php">Forum</a></li>
               <?php 
 			  } else {  
 			  ?>
@@ -75,6 +76,7 @@ $admin = $_SESSION['admin'];
                 <li><a href="../groupstudent/groups.php">Groups</a></li>
                 <li><a href="../report/indexReport.php">Reports</a></li>
                 <li><a href="../groupReportAssessment/addGroupReportAssessment.php">Assign assessments</a></li>
+                <li><a href="../forum/index.php">Forum</a></li>
               <?php 
 			  }  
 			  ?>
