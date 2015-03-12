@@ -8,7 +8,7 @@
 
   	<div class="page-header">
   <h1>Welcome!
-  	<br><small>To GC06 - Team 21 Peer Assesment</small></h1>
+  	<br><small>To GC06 - Team 21 Peer Assessment</small></h1>
 </div>
 
 
