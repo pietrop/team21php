@@ -30,7 +30,9 @@
 <?php
 	//Retrieving GROUPS list
 	if(!isset($_POST['search'])){
-		$whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
+		//Old query without querying mysql VIEWS
+		//$whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
+		$whichGroupQuery = "SELECT * FROM studentsWithGroupID";
 		$showResult = $conn->query($whichGroupQuery);
 		while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 			$groupsArray[] = $row;

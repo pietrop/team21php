@@ -30,7 +30,10 @@
         <?php
             //Retrieving students and groups from DB and storing in an Array
 			if (!isset($_POST['search'])){
-				$showResult = $conn->query("Select s.email, s.firstName, s.lastName, g.groupID FROM students AS s LEFT JOIN groups AS g ON s.email = g.student_ID");
+				//Old query without querying mysql VIEWS
+				//$showResult = $conn->query("Select s.email, s.firstName, s.lastName, g.groupID FROM students AS s LEFT JOIN groups AS g ON s.email = g.student_ID");
+				$query = "SELECT * from studentsWithGroupID";
+				$showResult = $conn->query($query);
 				while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 					$studentsArray[] = $row;
 				}

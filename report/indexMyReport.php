@@ -1,6 +1,6 @@
-  <?php
-include "../navbar/navbar.php";
-  ?>
+<?php
+	include "../navbar/navbar.php";
+?>
    <h1>My Report</h1>
  
 <!-- if condition only show this if report doesn't exist already -->
@@ -163,3 +163,6 @@ echo $newReport->getReview2();
  </div> <!-- row -->
 
    <!-- </div> -->
+<?php
+	include "../navbar/footer.php";
+?>

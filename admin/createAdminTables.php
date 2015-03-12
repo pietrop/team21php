@@ -32,37 +32,7 @@
 		echo '<th>Student 3</th>';
 		echo '</thead>';
 		echo '<tbody>';
-			
-		$currGroup = 0;
-		foreach($array as $group){
-			if ($group['groupID'] != null){
-				$counter = 0;
-				if ($currGroup == 0){
-					echo "<tr>";
-					echo "<td>".$group['groupID']."</td>";
-					echo "<td>".$group['email']."</td>";
-					$counter++;
-					$currGroup++;
-				} elseif ($group['groupID']==$currGroup){
-					echo "<td>".$group['email']."</td>";
-					$counter++;
-				} else {
-					while ($counter != 2){
-						echo "<td></td>";
-						$counter++;	
-					}
-					echo "</tr>";
-					$counter = 0;
-					//while($currGroup != $group['groupID']){
-						$currGroup++;
-					//}
-					echo "<tr>";
-					echo "<td>".$group['groupID']."</td>";
-					echo "<td>".$group['email']."</td>";
-					$counter++;
-				}
-			}
-		}
+		
 		$currGroup = 0;
 		$trTagOpen = false;
 		for($i=0;$i<count($array);$i++){
@@ -72,6 +42,10 @@
 				$counter = 0;
 				if ($groupID != $currGroup){
 					if($trTagOpen){
+						while ($counter != 2){
+							echo "<td></td>";
+							$counter++;	
+						}
 						echo "</tr>";
 						$trTagOpen = false;	
 					}
@@ -91,6 +65,30 @@
 			echo "<td></td>";
 			$counter++;	
 		}
+		echo '</tr>';
+		echo '</tbody>';
+		echo '</table>';
+	}
+	
+	function createReportTable($array){
+		echo '<table class="table table-hover">';
+		echo '<thead>';
+		echo '<th>Group ID</th>';
+		echo '<th>Abstract</th>';
+		echo '<th>Review 1</th>';
+		echo '<th>Review 2</th>';
+		echo '</thead>';
+		echo '<tbody>';	
+		
+		foreach($array as $report){
+			echo '<tr>';
+				echo "<td>".$report['group_ID']."</td>";
+				echo "<td>".$report['abstract']."</td>";
+				echo "<td>".$report['review1']."</td>";
+				echo "<td>".$report['review2']."</td>";
+			echo '</tr>';	
+		}
+		
 		echo '</tr>';
 		echo '</tbody>';
 		echo '</table>';
