@@ -37,10 +37,6 @@
     <h2><a href="login.php">Login</a></h2> <!-- Need to update this link -->
     </div> <!-- row -->
   </div> <!-- container -->
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+<?php
+ include "../navbar/footer.php";
+?>

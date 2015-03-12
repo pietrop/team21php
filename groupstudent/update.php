@@ -58,6 +58,6 @@
     
     
     
-</body>
-</html>
-<?php?>
+<?php
+ include "../navbar/footer.php";
+?>
