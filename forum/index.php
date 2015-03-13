@@ -21,13 +21,15 @@ include "post.php";
 
 ?>
 
+
+
 <!-- <a href="postAction.php"class="btn btn-primary">add a post</a> -->
  <div class='login-forms'>
               <!--IP ADDRESS SHOULD BE CHANGED ON THE NEXT LINE-->
                 <form action="postAction.php" method="post">
                     <br>
                      <input id="student_ID" type="hidden" name="student_ID" placeholder="student_ID" value="<?php echo  $studentN ?>"  class="form-control" rows="3">
-                     <input id="parentPost_ID" type="hidden" name="parentPost_ID" placeholder="parentPost_ID" value="<?php echo null ?>"  class="form-control" rows="3">
+                     <input id="parentPost_ID" type="hidden" name="parentPost_ID" placeholder="parentPost_ID" value="<?php echo NULL ?>"  class="form-control" rows="3">
                      <input id="post" type="text" name="post" placeholder="Type something here..."  class="form-control" rows="3">
                     <br>                
                     <input id="loginbtn" type="submit" value="post" class="btn btn-primary">
@@ -37,20 +39,13 @@ include "post.php";
 <!-- Show all posts, but only for  -->
 
 
-
-
- 
-
-
-
 <hr>
+<ul class="media-list">
+<li class="media">
 <div class="media">
   <div class="media-left">
   </div>
   <div class="media-body">
-   
-
-
 <?php
    while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
    	//troubleshooting
@@ -63,7 +58,8 @@ include "post.php";
     // $newReport = new Post($row['postID'],$row['student_ID'],$row['parentPost_ID'],$row['post']);
  	// print_r($newReport);
  	
- 	if (is_null($row['parentPost_ID']) !=1) {
+ 	if (is_null($row['parentPost_ID']) != null) {
+    echo "NOT NULLL";
     //NON ROOOT POSTS
  	echo "<p>postID: <strong>". $row['postID']."</strong>" ;
  	// if (is_null($newReport->parentPost_ID) !=1) {
@@ -104,14 +100,17 @@ echo " <h6 class='media-heading'>". $row['student_ID'] . "</h6>";
                 <form action="postAction.php" method="post">
                     <br>
                      <input id="student_ID" type="hidden" name="student_ID" placeholder="student_ID"  value="<?php echo $row['student_ID'] ?>" class="form-control" rows="3">
-                     <input id="parentPost_ID" type="hidden" name="parentPost_ID" placeholder="parentPost_ID" value="<?php echo $row['parentPost_ID']?>" class="form-control" rows="3">
+                     <input id="parentPost_ID" type="hidden" name="parentPost_ID" placeholder="parentPost_ID" value="<?php echo $row['postID']?>" class="form-control" rows="3">
                      <input id="post" type="text" name="post" placeholder="Type something here..."  class="form-control" rows="3">
                     <br>                
                     <input id="loginbtn" type="submit" value="post" class="btn btn-primary">
               </form>
             </div>
+
 <?php
+
 }
+
  	echo "<hr>";
  }
 
@@ -122,6 +121,8 @@ echo " <h6 class='media-heading'>". $row['student_ID'] . "</h6>";
 
   </div>
 </div>
+ </li>
+    </ul>
 <?php
 	include "../navbar/footer.php";
 ?>
