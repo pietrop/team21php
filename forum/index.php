@@ -10,8 +10,8 @@ include "post.php";
   ?>
 <h1>Forum</h1>
 <?php
-  $conn = connectToDb();
-  $conn->select_db("team21");
+ // $conn = connectToDb();
+  //$conn->select_db("team21");
  $studentN = $_SESSION['email'];
 // echo $studentN ;
  $query =sprintf("SELECT * FROM forum WHERE student_ID = '$studentN'");
