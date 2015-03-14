@@ -93,4 +93,30 @@
 		echo '</tbody>';
 		echo '</table>';
 	}
+	function createRankedGroupTable($array){
+		echo '<table class="table table-hover">';
+		echo '<thead>';
+		echo '<th>Rank</th>';
+		echo '<th>Group ID</th>';
+		echo '<th>Average Mark</th>';
+		echo '</thead>';
+		echo '<tbody>';	
+		// for ($i=1; $i < sizeof($array); $i++) { 
+		// 	# code...
+		// 	echo '<tr>';
+		// 	echo "<td>".$i."</td>";
+		// 	echo "<td>".$array[$i]."</td>";
+		// 	echo '</tr>';
+		// }
+		$i=1;
+		foreach($array as $id => $mark){
+			echo '<tr>';
+			echo "<td>".$i."</td>";
+			echo "<td>".$id."</td>";
+			echo "<td>".$mark."</td>";
+			echo '</tr>';	
+			$i++;
+		}
+
+	}
 ?>
