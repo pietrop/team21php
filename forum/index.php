@@ -14,21 +14,19 @@ include "post.php";
   //$conn->select_db("team21");
  $studentN = $_SESSION['email'];
 // echo $studentN ;
- $query =sprintf("SELECT * FROM forum WHERE student_ID = '$studentN'");
+ $query =sprintf("SELECT * FROM forum ORDER BY `forum`.`parentPost_ID` ASC");  //need to edit this query later to include only stuff from current login and group members. see previous commits. 
  $showResult = $conn->query($query);
- // print_r($showResult);
+ print_r($showResult);
 
 
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 // print_r($row);
-$postID [] = $row['postID'];
-$student_ID [] = $row['student_ID'];
-$parentPost_ID [] = $row['parentPost_ID'];
-$post [] = $row['post'];
-
+	$postID[] = $row['postID'];
+	$student_ID[] = $row['student_ID'];
+	$parentPost_ID[] = $row['parentPost_ID'];
+	$post[] = $row['post'];
 }
-
-print_r($post );
+// print_r($post);
 
 function fetchChildren($parent, $postID, $student_ID, $parentPost_ID, $post ){
 // echo (sizeof($postID));
@@ -37,22 +35,36 @@ function fetchChildren($parent, $postID, $student_ID, $parentPost_ID, $post ){
 // echo $i;
 // echo "<br>";
     // echo ($parent);
-  if ($parentPost_ID[i] == $parent){
+  if ($parentPost_ID[$i] == $parent){
      // echo ($parent);
-    fetchChildren($postID[i], $postID, $student_ID, $parentPost_ID, $post);
-
+    return fetchChildren($postID[$i], $postID, $student_ID, $parentPost_ID, $post);
   }
-
 }
-
 return $parent;
+}
+// fetchChildren($parentPost_ID[0], $postID, $student_ID, $parentPost_ID, $post);
 
+
+
+//Referenced -- http://evolvingweb.ca/blog/iterating-over-trees-php
+class ForumIterator extends ArrayIterator implements RecursiveIterator{
+	// Get a recursive iterator over the children of this item. 
+	public function getChildren() { 
+		$link_data = $this->current(); 
+		return new ForumIterator($link_data['below']); 
+	}   
+
+	// Does this item have children? 
+	public function hasChildren() { 
+		$link_data = $this->current(); 
+		return !empty($link_data['below']); 
+	} 
 }
 
-
-fetchChildren($parentPost_ID[0], $postID, $student_ID, $parentPost_ID, $post);
-
-
+echo "string";
+$menu = drush_get_option('menu'); 
+$tree = menu_build_tree($menu);
+print_r($menu);
 
 ?>
 
