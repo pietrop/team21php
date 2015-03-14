@@ -14,61 +14,31 @@ include "post.php";
   //$conn->select_db("team21");
  $studentN = $_SESSION['email'];
 // echo $studentN ;
- $query =sprintf("SELECT * FROM forum ORDER BY `forum`.`parentPost_ID` ASC");  //need to edit this query later to include only stuff from current login and group members. see previous commits. 
+ $query =sprintf("SELECT * FROM forummod where group_ID = ".$_SESSION['group']);  //need to edit this query later to include only stuff from current login and group members. see previous commits. 
  $showResult = $conn->query($query);
- print_r($showResult);
 
 
 while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 // print_r($row);
 	$postID[] = $row['postID'];
 	$student_ID[] = $row['student_ID'];
-	$parentPost_ID[] = $row['parentPost_ID'];
+	$topic[] = $row['topic'];
 	$post[] = $row['post'];
 }
-// print_r($post);
 
-function fetchChildren($parent, $postID, $student_ID, $parentPost_ID, $post ){
-// echo (sizeof($postID));
-//  echo "<br>";
- for ($i = 0; $i < sizeof($postID) ; $i++) {
-// echo $i;
-// echo "<br>";
-    // echo ($parent);
-  if ($parentPost_ID[$i] == $parent){
-     // echo ($parent);
-    return fetchChildren($postID[$i], $postID, $student_ID, $parentPost_ID, $post);
-  }
-}
-return $parent;
-}
-// fetchChildren($parentPost_ID[0], $postID, $student_ID, $parentPost_ID, $post);
-
-
-
-//Referenced -- http://evolvingweb.ca/blog/iterating-over-trees-php
-class ForumIterator extends ArrayIterator implements RecursiveIterator{
-	// Get a recursive iterator over the children of this item. 
-	public function getChildren() { 
-		$link_data = $this->current(); 
-		return new ForumIterator($link_data['below']); 
-	}   
-
-	// Does this item have children? 
-	public function hasChildren() { 
-		$link_data = $this->current(); 
-		return !empty($link_data['below']); 
-	} 
+//Want to print out the unique topics in the forum for this group.
+$uniqueTopics = array();
+foreach ($topic as $thisTopic) { 
+	if(in_array($thisTopic, $uniqueTopics)){
+		continue;
+	}
+	$uniqueTopics[] = $thisTopic;
+		?>
+			<h2>
+				<a href="displayPostsFromTopic.php?topic=firstTopic"><?php echo $thisTopic; $_GET["forumtopic"] = $thisTopic; ?></a>  
+			</h2>
+		<?php
 }
 
-echo "string";
-$menu = drush_get_option('menu'); 
-$tree = menu_build_tree($menu);
-print_r($menu);
-
-?>
-
-
-<?php
 	include "../navbar/footer.php";
 ?>
