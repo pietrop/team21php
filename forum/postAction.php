@@ -27,11 +27,20 @@
       $myDB = $conn->select_db("team21");
 
       //$query = 'INSERT INTO admins(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
-      	$query = $post->createInsertQuery();
-      	echo $query ;
-      	print_r($query);
-      	$conn->query($query);
+      	
 
+
+        if ($post->parentPost_ID != null){
+          $query = $post->createInsertQuery();
+          echo $query ;
+          print_r($query);
+          $conn->query($query);
+        } else {
+          $query = $post->createInsertQueryNoParentPost_ID();
+          echo $query ;
+          print_r($query);
+          $conn->query($query);
+        }
 
       	
  ?>

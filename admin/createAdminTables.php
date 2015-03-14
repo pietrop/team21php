@@ -24,12 +24,14 @@
 		echo '</table>';
 	}
 	function createGroupTable($array){
+		include "../report/rankingFunctions.php";
 		echo '<table class="table table-hover">';
 		echo '<thead>';
 		echo '<th>Group</th>';
 		echo '<th>Student 1</th>';
 		echo '<th>Student 2</th>';
 		echo '<th>Student 3</th>';
+		echo '<th>Average Grade</th>';
 		echo '</thead>';
 		echo '<tbody>';
 		
@@ -46,6 +48,7 @@
 							echo "<td></td>";
 							$counter++;	
 						}
+						echo "<td>".averageMark($currGroup)."</td>";
 						echo "</tr>";
 						$trTagOpen = false;	
 					}

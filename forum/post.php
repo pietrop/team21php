@@ -35,5 +35,15 @@ function __construct($student_ID, $parentPost_ID, $post ){
 		}
 	}
 
+
+	function createInsertQueryNoParentPost_ID(){
+		if ($this->student_ID != null){
+			return 'INSERT INTO forum(student_ID, post)
+		 VALUES ("'.$this->student_ID.'", "'.$this->post.'")';
+		} else {
+			return null;
+		}
+	}
+
 }
 ?>
