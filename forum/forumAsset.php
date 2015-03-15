@@ -14,7 +14,7 @@
 	
 ?>
 <!-- <a href="postAction.php"class="btn btn-primary">add a post</a> -->
- <div class='login-forms'>
+ <div class="container">
   <!--IP ADDRESS SHOULD BE CHANGED ON THE NEXT LINE-->
     <form action="postAction.php" method="post">
         <br>
@@ -50,6 +50,7 @@
 			echo '</div>';
 			echo '<div class="media-body">';
 			echo '<h4 class="media-hedding"> Heading '.$counter.' </h4>';
+			echo '<p>'.$children[$counter]['post'].'</p>';
 			$currPostID = $children[$counter]['postID'];
 			$counter++;
 		}
