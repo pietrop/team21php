@@ -144,6 +144,10 @@
 
 		//****END OF QUERY****
 		
+
+
+
+
 		//ADDITIONAL QUERIES FOR DROPING AND CREATING NEW VIEWS
 		$sql = "DROP VIEW studentsWithGroupID";
 		echo $sql; 
