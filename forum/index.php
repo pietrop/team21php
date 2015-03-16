@@ -45,8 +45,8 @@
 			foreach($searchResult as $array){
 				echo '<div class="container well">';
 				echo '<div class="row">';
-				echo '<strong>'.$array['postID'].' </strong>';
-				echo '<emph>'.$array['student_ID'].'<emph>';
+				echo '<strong>'.$array['postID'].'&nbsp;&nbsp; </strong>';
+				echo '<i>'.$array['student_ID'].'</i>';
 				echo '</div>';
 				echo '<br>';	
 				echo '<div class="row">';
