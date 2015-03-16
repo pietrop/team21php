@@ -5,7 +5,6 @@
 	if (!isAdmin()){
 		include "../login/redirectToNotAllowed.php";	
 	}
-	print_r($_SESSION);
 ?>
 <main>
 <br>
