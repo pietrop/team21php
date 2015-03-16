@@ -47,5 +47,5 @@
 
 	<!-- redirects using js -->
         <script>
-           location.href = "index.php";
-  </script>
+           location.href = "forumAsset.php";
+  		</script>
