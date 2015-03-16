@@ -51,11 +51,7 @@
 			echo '</div>';
 			echo '<div class="media-body">';
 			echo '<h4 class="media-hedding"> Heading '.$counter.' </h4>';
-<<<<<<< HEAD
 			echo '<p>'.$children[$counter]['post'].'</p>';
-=======
-			echo ($children[$counter]['post']);
->>>>>>> 7b7713350bd001d9681facd0fed062a0590be0d5
 			$currPostID = $children[$counter]['postID'];
 			$counter++;
 		}
