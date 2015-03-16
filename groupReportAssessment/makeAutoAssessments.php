@@ -26,7 +26,9 @@
     }
     for ($i=1; $i <= $numberOfGroups; $i++) { 
     	for ($j=1; $j <= $numberOfAssessments; $j++) { 
-    		$assessee = mt_rand(1, $numberOfGroups);
+    		$assessee = ($i + $j) % $numberOfGroups +1;
+    		if($assessee == $i) $assessee++;
+    		if($assessee == 0) $assessee++;
     		$assessment = new GroupReportAssessment($i, $assessee);
 			//$query = 'INSERT INTO groupreportassessment(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
 			echo "string";
@@ -41,6 +43,6 @@
 
 
 
-    // header("Location: showAssessments.php");
+    header("Location: showAssessments.php");
 
 ?>
