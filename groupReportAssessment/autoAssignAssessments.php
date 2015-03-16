@@ -20,10 +20,11 @@
 	<select id="numberOfAssessments" name="numberOfAssessments">
 		<?php
 		for ($i=1; $i < $numberOfGroups; $i++) { 
-			echo '<option value="volvo">'.$i.'</option>';
+			echo '<option>'.$i.'</option>';
 		}
 		?>
 	</select>
+	<br>
 	<input type="checkbox" name="clearPrevious" value="clearPrevious" id="clearPrevious">Clear previous assigned assessments.<br>
 	<BR>
   	<button type="submit" class="btn btn-default">Automatically Assign</button>
