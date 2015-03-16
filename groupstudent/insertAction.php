@@ -27,6 +27,11 @@ $conn->query($newStudent->createInsertQuery());
 $addQuery = "INSERT INTO `groups`(`groupID`, `student_ID`) VALUES (".$group.",\"".$email."\")";
 $conn->query($addQuery);
 
-header("Location: index.php");
+// header("Location: index.php");
 
 ?>
+
+
+<script>
+location.href = "index.php";
+</script>
