@@ -80,8 +80,7 @@
 		foreach($rootArray as $smallArray){
 			echo '<li class="media">';
 			openningTags($smallArray);
-			$myArray[] = $arrayToAdd;
-			$myArray[] = printPostID($postArray, $smallArray, 0);
+			printPostID($postArray, $smallArray, 0);
 			closingTags();
 			echo '</li>';
 			$counter++;
@@ -111,7 +110,7 @@
 		echo '<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>';
 		echo '</div>';
 		echo '<div class="media-body">';
-		echo '<small class="media-hedding"><strong>'.$smallArray['postID'].' '.$smallArray['student_ID'].' </strong></small><br>';
+		echo '<small class="media-hedding"><strong>'.$smallArray['postID'].'</strong>&nbsp;&nbsp; <i>'.$smallArray['student_ID'].'</i> </small><br>';
 		echo '<p>'.$smallArray['post'].'</p>';
 		echo '<div class="collapse" id="collapse'.$smallArray['postID'].'">';
 		?>
