@@ -101,15 +101,18 @@ $admin = $_SESSION['admin'];
 <!-- Login notificaiton system -->
     <div class="row">
       <div class="col-lg-12 col-md-12  col-sm-12 col-xs-12">
-        <div class="alert alert-success" role="alert">Welcome to <strong>Team 21</strong> Peer Review System</div>
-    <p class="text-primary"></p>
- 
-<div class="alert alert-info" role="alert">
-      <?php
-        echo 'You are logged in as <strong>'.$_SESSION['firstName'].' '.$_SESSION['lastName'].'</strong>';
-        ?>.
-  </div>
-  </div> <!-- col -->
+        <div class="alert alert-success" role="alert">Welcome to <strong>Team 21</strong> Peer Review System. <?php
+          echo 'You are logged in as <strong>'.$_SESSION['firstName'].' '.$_SESSION['lastName'].'</strong>';
+          ?> </div>
+        <p class="text-primary"></p>
+      </div> 
+<!--       <div class="col-lg-6 col-md-6  col-sm-6 col-xs-6">
+      <div class="alert alert-info" role="alert">
+        <?php
+          echo 'You are logged in as <strong>'.$_SESSION['firstName'].' '.$_SESSION['lastName'].'</strong>';
+          ?>.
+      </div>
+      </div>-->
     </div> <!-- row -->
 
     <!-- follows rest of page where this is being included, however container is opened in navbar and closed in footer, in pages you just need to setup the rows and cols you want. -->

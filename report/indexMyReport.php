@@ -17,11 +17,18 @@
   $conn = connectToDb();
   $conn->select_db("team21");
 
-  $query =sprintf("SELECT * FROM `reports`");
+  $query =sprintf('SELECT * FROM `reports` WHERE group_ID='.$_SESSION['group'].';');
   $showResult = $conn->query($query);
   // print_r($showResult);
-  while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+  // print_r($_SESSION['group']);
+  // print_r($_SESSION);
+  while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){ 
     $newReport = new Report($row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
+       // print_r($newReport);
+  }
+
+  if ($newReport == null){
+    echo "<br><p class='text-warning'>You don't have a report, add a new report</p>";
   }
   
 
@@ -29,7 +36,7 @@
 <br>
  <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title"> Group: <?php echo $newReport->getGroup_ID(); ?>'s Report </h3>
+      <h3 class="panel-title"> <?php echo 'Group: '.$newReport->getGroup_ID(); ?>'s Report </h3>
     </div>
   
     <div class="panel-body">

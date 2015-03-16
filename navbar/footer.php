@@ -3,7 +3,6 @@
 <div class="footer navbar-fixed-bottom"> <!-- this is what is keeping the footer sticked to the bottom of the page -->
 <footer class="footer">
       <div class="container">
-        <p class="text-muted"><small>find me in ./navbar/footer.php</small></p>
       </div>
     </footer>
   </div> <!-- footer navbar-fixed-bottom -->
