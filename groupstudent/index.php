@@ -51,7 +51,7 @@
         ?>
         
         <div class="container">
-            <a href="insert.php"> <span class="glyphicon glyphicon-plus"></span> Add new student</a>
+            <a class="btn btn-primary" href="insert.php">Add new student</a>
         </div>
     </div>
 </main>
