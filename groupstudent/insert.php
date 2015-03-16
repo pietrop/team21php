@@ -34,12 +34,6 @@
                 <div class="col-sm-10">
             <select name="group" id="group" class="form-control">
                 <?php
-                    include "../dbConnect.php";
-    
-                    //****DATABASE CONNECTION
-                    $conn = connectToDb();
-                    $conn->select_db("team21");
-                    //****END OF CONNECTION PROCEDURE****
                     
                     //QUERY TO DETERMINE AVAILABLE GROUPS
                     $query = "SELECT `groupID`, COUNT(`student_ID`) as count FROM `groups` GROUP BY `groupID`";
