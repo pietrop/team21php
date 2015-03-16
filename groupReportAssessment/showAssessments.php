@@ -49,7 +49,7 @@
     </div>
    <button type="submit" class="btn btn-default">Add Assessment</button>
   </form>
- <!--  <a class="btn btn-default" href="autoAssignAssessments.php">I am lazy, make me a script for all assessments.</a> -->
+  <a class="btn btn-default" href="autoAssignAssessments.php">I am lazy, make me a script for all assessments.</a>
 </div>      
       
       
