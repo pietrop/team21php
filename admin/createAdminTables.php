@@ -37,20 +37,21 @@
 		
 		$currGroup = 0;
 		$trTagOpen = false;
+		$counter = 0;
 		for($i=0;$i<count($array);$i++){
 			$groupID = $array[$i]['groupID'];
 			$email = $array[$i]['email'];
 			if ($groupID != null){
-				$counter = 0;
 				if ($groupID != $currGroup){
 					if($trTagOpen){
-						while ($counter != 2){
+						while ($counter < 3){
 							echo "<td></td>";
 							$counter++;	
 						}
 						echo "<td>".averageMark($currGroup)."</td>";
 						echo "</tr>";
 						$trTagOpen = false;	
+						$counter = 0;
 					}
 					$currGroup++;	
 					$i--;
@@ -61,10 +62,11 @@
 						$trTagOpen = true;
 					}
 					echo "<td>".$email."</td>";
+					$counter++;
 				}
 			}
 		}
-		while ($counter != 2){
+		while ($counter < 3){
 			echo "<td></td>";
 			$counter++;	
 		}
