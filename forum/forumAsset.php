@@ -7,11 +7,12 @@
 		if ($row['parentPost_ID'] == NULL){
 			$rootArray[] = $row;	
 		} else {
-			$children[] = $row; 	
+			$children[] = $row; 
+
 		}
 	}
 	
-	
+	// print_r($children);	
 ?>
 <!-- <a href="postAction.php"class="btn btn-primary">add a post</a> -->
  <div class='login-forms'>
@@ -50,6 +51,7 @@
 			echo '</div>';
 			echo '<div class="media-body">';
 			echo '<h4 class="media-hedding"> Heading '.$counter.' </h4>';
+			echo ($children[$counter]['post']);
 			$currPostID = $children[$counter]['postID'];
 			$counter++;
 		}
