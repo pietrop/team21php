@@ -1,10 +1,6 @@
-<html>
-<body>
-	
-    
-	<header role="banner">
-    </header>
-	<main role='main'>
+<?php
+    include "../navbar/navbar.php";
+?>
     	<article>
             <h1> Update Fields </h1>
             <div class='login-forms'>
@@ -19,12 +15,7 @@
                     <b>Group</b>
                     <select name="group">
                         <?php
-                            include "../dbConnect.php";
-
-                            //****DATABASE CONNECTION
-                            $conn = connectToDb();
-                            $conn->select_db("team21");
-                            //****END OF CONNECTION PROCEDURE****
+                         
                             
                             //QUERY TO DETERMINE AVAILABLE GROUPS
                             $query = "SELECT `groupID`, COUNT(`student_ID`) as count FROM `groups` GROUP BY `groupID`";
