@@ -38,7 +38,7 @@
 		echo '</a>';
 		echo '</div>';
 		echo '<div class="media-body">';
-		echo '<h4 class="media-hedding"> Heading </h4>';
+		echo '<small class="media-hedding"><strong> '.$smallArray['student_ID'].' </strong></small><br>';
 		echo '<p>'.$smallArray['post'].'</p>';
 		$currPostID = $smallArray['postID'];
 		
@@ -50,7 +50,7 @@
 			echo '</a>';
 			echo '</div>';
 			echo '<div class="media-body">';
-			echo '<h4 class="media-hedding"> Heading '.$counter.' </h4>';
+			echo '<small class="media-hedding"><strong>'. $children[$counter]['student_ID'].'</strong></small><br>';
 			echo ($children[$counter]['post']);
 			$currPostID = $children[$counter]['postID'];
 			$counter++;
