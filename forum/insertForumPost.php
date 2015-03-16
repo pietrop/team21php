@@ -23,7 +23,7 @@ $query = 'INSERT INTO forummod (`group_ID`, `topic`, `post`, `student_ID`) VALUE
 $conn->query($query);
 ?>
 
-	<!-- redirects using js -->
-      <script>
-           location.href = "displayPostsFromTopic.php?topic=firstTopic";
-  </script>
+<!-- redirects using js -->
+<script>
+   location.href = "displayPostsFromTopic.php?topic=firstTopic";
+</script>
