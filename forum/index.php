@@ -1,7 +1,11 @@
 <?php
 	include "../navbar/navbar.php";
 	//$query = "SELECT * FROM forum WHERE student_ID='".$_SESSION['email']."' ORDER BY parentPost_ID, postID";
-	$query = "SELECT * FROM forum ORDER BY parentPost_ID, postID";
+	if ($_SESSION['admin'] == 1){
+		$query = "SELECT * FROM forum ORDER BY parentPost_ID, postID";
+	} else {
+		$query = "SELECT * FROM `Forum` f LEFT JOIN groups g ON g.student_ID = f.student_ID WHERE g.groupID = ".$_SESSION['group']." ORDER BY parentPost_ID, postID";	
+	}
 	$result = $conn->query($query);
 	while ($row = $result->fetch_array(MYSQLI_ASSOC)){
 		if ($row['parentPost_ID'] == NULL){

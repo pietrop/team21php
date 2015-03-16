@@ -115,7 +115,7 @@
 		$sql = "DROP TABLE forum";
 		$conn->query($sql);
 		echo $sql; 
-		$sql = "CREATE TABLE Forum ( postID int(11) not null AUTO_INCREMENT ,student_ID varchar(11) not null,parentPost_ID varchar(11),post text not null, PRIMARY KEY (postID));";	
+		$sql = "CREATE TABLE Forum ( postID int(11) not null AUTO_INCREMENT ,student_ID varchar(40) not null,parentPost_ID int(11),post text not null, PRIMARY KEY (postID));";	
 		$conn->query($sql);
 		echo $sql; 
 		echo "<br><br>";  
