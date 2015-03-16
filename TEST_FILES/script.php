@@ -57,7 +57,7 @@
 		$conn->query($sql);
 
 	//****Query to make admin****
-		$sql = "INSERT INTO `team21`.`admins` (`email`, `firstName`, `lastName`, `password`) VALUES ('admin@admin.com','Your','Mum','".md5('admin')."')";
+		$sql = "INSERT INTO `team21`.`admins` (`email`, `firstName`, `lastName`, `password`) VALUES ('admin@admin.com','The','Admin','".md5('admin')."')";
 		echo $sql; 
 		echo "<br><br>"; 
 	//****END OF QUERY****
@@ -143,10 +143,7 @@
 
 
 		//****END OF QUERY****
-		
-
-
-
+	
 
 		//ADDITIONAL QUERIES FOR DROPING AND CREATING NEW VIEWS
 		$sql = "DROP VIEW studentsWithGroupID";
