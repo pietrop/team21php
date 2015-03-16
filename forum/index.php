@@ -10,50 +10,91 @@
 	while ($row = $result->fetch_array(MYSQLI_ASSOC)){
 		if ($row['parentPost_ID'] == NULL){
 			$rootArray[] = $row;	
-		} else {
-			$postArray['postID'] = $row['postID'];
-			$postArray['student_ID'] = $row['student_ID'];
-			$postArray['parentPost_ID'] = $row['parentPost_ID'];
-			$postArray['post'] = $row['post'];
-			$postArray['displayed'] = FALSE;
-			$children[] = $postArray; 
-
 		}
 		$postArray[] = $row;
 	}
 	
-	//print_r($children);	
 ?>
 <!-- <a href="postAction.php"class="btn btn-primary">add a post</a> -->
- <div class="container">
+<h3> Forum </h3>
+<form class="form-inline" action="index.php" method="post">
+	<?php include "../search/searchForm.php"; 
+		if($_SESSION['admin'] == 0){
+	?>
+    <input type="hidden" name="group" value="<?php echo $_SESSION['group'];?>">
+    <?php 
+		}
+        if(isset($_POST['submit']) && $_POST['search'] != ''){
+    ?>
+    <div class="form-group">
+        <a href="index.php"><button type="button" class="btn btn-default">Reset</button></a>
+    </div>
+    <?php	
+    }
+    ?>
+</form>
+<?php
+	if (isset($_POST) && $_POST['search']!=""){
+		include "../search/search.php";
+		if (!isset($_POST['group'])){
+			$searchResult = searchForum($_POST['search'],$_POST['searchFor'],$conn, null);
+		} else {
+			$searchResult = searchForum($_POST['search'],$_POST['searchFor'],$conn, $_POST['group']);
+		}
+		if (count($searchResult)>0){
+			foreach($searchResult as $array){
+				echo '<div class="container well">';
+				echo '<div class="row">';
+				echo '<strong>'.$array['postID'].' </strong>';
+				echo '<emph>'.$array['student_ID'].'<emph>';
+				echo '</div>';
+				echo '<br>';	
+				echo '<div class="row">';
+				echo '<p>'.$array['post'].'</p>';
+				echo '</div>';
+				echo '</div>';
+			}
+		} else {
+			echo '<br><br><strong> No results </strong>';	
+		}
+	} else {
+?>
+<h4> Add new post </h4> 
+ <div class="container well">
   <!--IP ADDRESS SHOULD BE CHANGED ON THE NEXT LINE-->
     <form action="postAction.php" method="post">
         <br>
          <input id="student_ID" type="hidden" name="student_ID" placeholder="student_ID" value="<?php echo  $_SESSION['email'] ?>"  class="form-control" rows="3">
          <input id="parentPost_ID" type="hidden" name="parentPost_ID" placeholder="parentPost_ID" value="<?php echo NULL ?>"  class="form-control" rows="3">
-         <input id="post" type="text" name="post" placeholder="Type something here..."  class="form-control" rows="3">
+         <textarea id="post" name="post" placeholder="Type something here..."  class="form-control" rows="3"></textarea>
         <br>                
-        <input id="loginbtn" type="submit" value="post" class="btn btn-primary">
+        <input type="submit" value="post" class="btn btn-success">
   </form>
 </div>
-<hr>
-<ul class="media-list">
+<div class="container">
+<ul class="media-list well">
 
 <?php
 	$counter = 0;
-	foreach($rootArray as $smallArray){
-		echo '<li class="media">';
-		openningTags($smallArray);
-		$myArray[] = $arrayToAdd;
-		$myArray[] = printPostID($postArray, $smallArray, 0);
-		closingTags();
-		echo '</li>';
-		$counter++;
-		
-		
+	if (count($rootArray)>0){
+		foreach($rootArray as $smallArray){
+			echo '<li class="media">';
+			openningTags($smallArray);
+			$myArray[] = $arrayToAdd;
+			$myArray[] = printPostID($postArray, $smallArray, 0);
+			closingTags();
+			echo '</li>';
+			$counter++;
+		}
 	}
-	
-	
+?>
+</ul>
+</div>
+<?php
+	}
+?>
+<?php	
+		
 	function printPostID($array, $postID, $depth){
 		for ($i=0;$i<count($array);$i++){
 			if ($postID['postID'] == $array[$i]['parentPost_ID']){
@@ -78,7 +119,7 @@
             <br>
              <input id="student_ID" type="hidden" name="student_ID" placeholder="student_ID" value="<?php echo  $_SESSION['email'] ?>"  class="form-control" rows="3">
              <input id="parentPost_ID" type="hidden" name="parentPost_ID" placeholder="parentPost_ID" value="<?php echo $smallArray['postID'] ?>"  class="form-control" rows="3">
-             <input id="post" type="text" name="post" placeholder="Type something here..."  class="form-control" rows="3">
+             <textarea id="post" type="text" name="post" placeholder="Type something here..."  class="form-control" rows="2"></textarea>
             <br>                
             <input id="loginbtn" type="submit" value="post" class="btn btn-primary btn-xs">
       </form>
@@ -90,8 +131,6 @@
 	function closingTags(){
 		echo '</div>';	
 	}
-?>
-</ul>
-<?php	
+
 	include "../navbar/footer.php";
 ?>

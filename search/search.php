@@ -19,4 +19,16 @@ function search($searchTerm, $searchFor, $conn){
 	}
 	return $array;
 }
+function searchForum($searchTerm, $searchFor, $conn, $group){
+	if ($group ==null){
+		$query = "SELECT * FROM Forum WHERE (postID LIKE '%".$searchTerm."%' OR student_ID LIKE '%".$searchTerm."%' OR post LIKE '%".$searchTerm."%')";
+	} else {
+		$query = "SELECT f.postID, f.student_ID, f.post FROM `Forum` f LEFT JOIN groups g ON g.student_ID = f.student_ID WHERE g.groupID = ".$group." AND (f.postID LIKE '%".$searchTerm."%' OR f.student_ID LIKE '%".$searchTerm."%' OR f.post LIKE '%".$searchTerm."%')";
+	}
+	$result = $conn->query($query);
+	while ($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$array[] = $row;	
+	}
+	return $array;
+}
 ?>

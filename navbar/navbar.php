@@ -68,7 +68,6 @@ $admin = $_SESSION['admin'];
                 <li><a href="../myGroup/index.php">My Group</a></li>
                 <li><a href="../report/indexMyReport.php">My Report</a></li>
                 <li><a href="../report/myReportsToAssess.php">Make Assessment</a></li>
-                <li><a href="../forum/index.php">Forum</a></li>
               <?php 
 			  } else {  
 			  ?>
@@ -80,6 +79,7 @@ $admin = $_SESSION['admin'];
               <?php 
 			  }  
 			  ?>
+              <li><a href="../forum/index.php">Forum</a></li>
               </ul>
 
               <ul class="nav navbar-nav navbar-right">
