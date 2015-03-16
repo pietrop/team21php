@@ -47,7 +47,7 @@
 	}
 ?>
 </div>
-
+<a class="btn btn-primary" href="rankedGroups.php">Show Group Rankings</a>
 
 </main>
 

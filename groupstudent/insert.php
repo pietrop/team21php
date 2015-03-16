@@ -1,15 +1,7 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Register</title>
-<link rel="stylesheet" href="../bootstrap.css">
-</head>
-<div class="container">
-	<header class="page-header">
-		<h1 class="text-center"> Register </h1>
-    </header>
-</div>
+<?php
+    include "../navbar/navbar.php";
+?>
+
 <div class="container">
     <div class="jumbotron">
         <form class="form-horizontal" action="insertAction.php" method="post">
