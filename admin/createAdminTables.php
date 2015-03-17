@@ -70,6 +70,7 @@
 			echo "<td></td>";
 			$counter++;	
 		}
+		echo "<td>".averageMark($currGroup)."</td>";
 		echo '</tr>';
 		echo '</tbody>';
 		echo '</table>';
