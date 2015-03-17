@@ -17,7 +17,7 @@
 <?php
 	//Retrieving GROUPS list
 	if(!isset($_POST['search'])){
-		$whichGroupQuery = "SELECT * FROM studentsWithGroupID";
+		$whichGroupQuery = "SELECT * FROM studentsWithGroupID ORDER BY groupID";
 		$showResult = $conn->query($whichGroupQuery);
 		while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
 			$groupsArray[] = $row;
