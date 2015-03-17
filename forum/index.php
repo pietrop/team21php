@@ -1,22 +1,26 @@
 <?php
 	include "../navbar/navbar.php";
-	//$query = "SELECT * FROM forum WHERE student_ID='".$_SESSION['email']."' ORDER BY parentPost_ID, postID";
+	//Admin should be able to see all the posts while students only those that are relevant to their group
 	if ($_SESSION['admin'] == 1){
 		$query = "SELECT * FROM forum ORDER BY parentPost_ID, postID";
 	} else {
-		$query = "SELECT * FROM `Forum` f LEFT JOIN groups g ON g.student_ID = f.student_ID WHERE g.groupID = ".$_SESSION['group']." ORDER BY parentPost_ID, postID";	
+		$query = "SELECT f.postID, f.student_ID, f.parentPost_ID, f.post FROM `Forum` f LEFT JOIN groups g ON g.student_ID = f.student_ID LEFT JOIN admins a ON a.email = f.student_ID WHERE g.groupID = ".$_SESSION['group']." OR f.student_ID = a.email ORDER BY parentPost_ID, postID";	
 	}
 	$result = $conn->query($query);
+	//Processing result from the query
 	while ($row = $result->fetch_array(MYSQLI_ASSOC)){
 		if ($row['parentPost_ID'] == NULL){
+			//Storing root posts in a separate array for further processing
 			$rootArray[] = $row;	
 		}
+		//Array of all the posts
 		$postArray[] = $row;
 	}
 	
 ?>
-<!-- <a href="postAction.php"class="btn btn-primary">add a post</a> -->
+
 <h3> Forum </h3>
+<!--Search form-->
 <form class="form-inline" action="index.php" method="post">
 	<?php include "../search/searchForm.php"; 
 		if($_SESSION['admin'] == 0){
@@ -30,10 +34,11 @@
         <a href="index.php"><button type="button" class="btn btn-default">Reset</button></a>
     </div>
     <?php	
-    }
+    	}
     ?>
 </form>
 <?php
+	//Processing search
 	if (isset($_POST) && $_POST['search']!=""){
 		include "../search/search.php";
 		if (!isset($_POST['group'])){
@@ -43,6 +48,7 @@
 		}
 		if (count($searchResult)>0){
 			foreach($searchResult as $array){
+				echo '<!--Displaying search results-->';
 				echo '<div class="container well">';
 				echo '<div class="row">';
 				echo '<strong>'.$array['postID'].'&nbsp;&nbsp; </strong>';
@@ -61,7 +67,7 @@
 ?>
 <h4> Add new post </h4> 
  <div class="container well">
-  <!--IP ADDRESS SHOULD BE CHANGED ON THE NEXT LINE-->
+  <!--New Post Form-->
     <form action="postAction.php" method="post">
         <br>
          <input id="student_ID" type="hidden" name="student_ID" placeholder="student_ID" value="<?php echo  $_SESSION['email'] ?>"  class="form-control" rows="3">
@@ -71,36 +77,41 @@
         <input type="submit" value="post" class="btn btn-success">
   </form>
 </div>
+<!--Displaying forum posts-->
 <div class="container">
-<ul class="media-list well">
-
-<?php
-	$counter = 0;
-	if (count($rootArray)>0){
-		foreach($rootArray as $smallArray){
-			echo '<li class="media">';
-			openningTags($smallArray);
-			printPostID($postArray, $smallArray, 0);
-			closingTags();
-			echo '</li>';
-			$counter++;
+	<ul class="media-list well">
+	<?php
+        if (count($rootArray)>0){ //making sure that there are post to display
+            foreach($rootArray as $smallArray){
+                echo '<li class="media">';
+                openningTags($smallArray);
+                printPostID($postArray, $smallArray, 0);
+                closingTags();
+                echo '</li>';
+            }
+        } else {
+			echo '<li class="media">No Posts to display</li>';	
 		}
-	}
-?>
-</ul>
+    ?>
+	</ul>
 </div>
 <?php
 	}
 ?>
 <?php	
-		
+	//Recursive function that indents child posts making sure that "depth is taken into account
+	//$array – array of all the posts
+	//$postID – post that is being reviewed for children
+	//$depth – "depth" of the current post (required for accurate display)	
 	function printPostID($array, $postID, $depth){
+		//Looping through the post array to identify children
 		for ($i=0;$i<count($array);$i++){
+			//If there are children echo relevant HTML tags and recursively call the function
 			if ($postID['postID'] == $array[$i]['parentPost_ID']){
 				echo '<div class="media">';
-				openningTags($array[$i]);
-				printPostID($array, $array[$i], $depth+1);
-				closingTags();
+				openningTags($array[$i]); //echoing relevant HTML tags
+				printPostID($array, $array[$i], $depth+1); //recursive call, incrementing "depth"
+				closingTags(); //echoing relevant HTML tags
 				echo '</div>';
 			}
 		}
@@ -114,6 +125,7 @@
 		echo '<p>'.$smallArray['post'].'</p>';
 		echo '<div class="collapse" id="collapse'.$smallArray['postID'].'">';
 		?>
+        <!--Reply to post <?php echo $smallArray['postID']?>-->
         <form action="postAction.php" method="post">
             <br>
              <input id="student_ID" type="hidden" name="student_ID" placeholder="student_ID" value="<?php echo  $_SESSION['email'] ?>"  class="form-control" rows="3">

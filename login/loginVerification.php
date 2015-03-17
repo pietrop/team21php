@@ -1,10 +1,14 @@
 <?php
 	include "../dbConnect.php";
 	session_start();
+	//****DATABASE CONNECTION****
+	$conn = connectToDb();
+	$conn->select_db("team21");
+	//****END OF CONNECTION PROCEDURE****
 	
 	#Making sure that email and password fields are filled
 	if (isset($_POST['email']) and isset($_POST['password'])){
-		$email = $_POST['email'];
+		$email = mysqli_real_escape_string($conn, $_POST['email']);
 		$password = md5($_POST['password']); //PHP hashing is used
 		
 		if (isset($_POST['admin'])){
@@ -13,10 +17,7 @@
 			$admin = 0;	
 		}
 		
-		//****DATABASE CONNECTION****
-		$conn = connectToDb();
-		$conn->select_db("team21");
-		//****END OF CONNECTION PROCEDURE****
+		
 		
 		if ($admin == 1){ //IF ADMIN LOGIN ATTEMPTED
 		
@@ -45,7 +46,6 @@
 			
 		} else { //IF GENERAL LOGIN ATTEMTED
 		
-			//$query = "SELECT * from students WHERE email='$email' and password='$password'";
 			$query = "SELECT * from students as s JOIN groups as g WHERE s.email='$email' and s.password='$password' 
 			and g.student_ID='$email'";
 			$result = $conn->query($query);

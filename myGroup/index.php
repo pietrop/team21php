@@ -1,4 +1,5 @@
 <?php
+//Displaying group of a student
 include "../navbar/navbar.php";
 $query = "SELECT * FROM `groups` as g INNER JOIN students as s WHERE g.groupID = ".$_SESSION['group']." and g.student_ID = s.email";
 $result = $conn->query($query);

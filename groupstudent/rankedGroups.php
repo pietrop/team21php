@@ -1,7 +1,6 @@
 <?php
 	include "../navbar/navbar.php";
 	include "../admin/createAdminTables.php";
-	include "../search/search.php";
 	if (!isAdmin()){
 		include "../login/redirectToNotAllowed.php";	
 	}
@@ -19,6 +18,8 @@
     	$rankArray = ranking();
 		createRankedGroupTable($rankArray);
 	?>
+    <br>
+    <a href="groups.php" class="btn btn-primary"> Back </a>
 
 </div>
 

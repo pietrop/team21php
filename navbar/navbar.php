@@ -2,10 +2,10 @@
  include "../dbConnect.php";
  include "../login/loggedIn.php";
  session_start();
+ //Checking if user logged in
  if (!loggedIn()){
 	include "../login/redirect.php";	 
  }
-// $_SESSION['username'] = 'kjoshimail@gmail.com';
  //****DATABASE CONNECTION
 $conn = connectToDb();
 $conn->select_db("team21");
@@ -47,6 +47,7 @@ $admin = $_SESSION['admin'];
                 <span class="icon-bar"></span>
               </button>
               <?php
+			  //Different for adming and student
 			  if ($admin == 0){?>
               	<a class="navbar-brand" href="../homePage/index.php">GC06 - Team 21</a>
               <?php

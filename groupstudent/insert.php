@@ -61,7 +61,7 @@
                     <button type="submit" class="btn btn-primary"> Register </button>
                 </div>
                 <div class="col-sm-1">
-                    <a href="../login/index.php"><button type="button" class="btn btn-danger"> Cancel </button></a>
+                    <a href="index.php"><button type="button" class="btn btn-danger"> Cancel </button></a>
                 </div>
             </div>
       </form>

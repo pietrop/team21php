@@ -1,15 +1,15 @@
 <?php
-
+/**
+*Student search. Returns array.
+**/
 function search($searchTerm, $searchFor, $conn){
+	$searchTerm = mysqli_real_escape_string($conn, $searchTerm);
+	$searchFor = mysqli_real_escape_string($conn, $searchFor);
 	switch($searchFor){
 		case('student'):
-		//Old query without querying mysql VIEWS
-			//$query = "SELECT s.email, s.firstName, s.lastName, g.groupID FROM `students` AS s LEFT JOIN groups AS g ON s.email = g.student_ID WHERE (s.email LIKE '%".$searchTerm."%' OR s.firstName LIKE '%".$searchTerm."%' OR s.lastName LIKE '%".$searchTerm."%' OR g.groupID LIKE '%".$searchTerm."%')";
 			$query = "SELECT * FROM `studentsWithGroupID` WHERE (email LIKE '%".$searchTerm."%' OR firstName LIKE '%".$searchTerm."%' OR lastName LIKE '%".$searchTerm."%' OR groupID LIKE '%".$searchTerm."%')";
 		break;
 		case('group'):
-		//Old query without querying mysql VIEWS
-			//$query = "SELECT g.groupID, s.email FROM groups AS g INNER JOIN students AS s WHERE (g.student_ID = s.email) AND (s.email LIKE '%".$searchTerm."%' OR s.firstName LIKE '%".$searchTerm."%' OR s.lastName LIKE '%".$searchTerm."%' OR g.groupID LIKE '%".$searchTerm."%')";
 			$query = "SELECT * FROM `studentsWithGroupID` WHERE (email LIKE '%".$searchTerm."%' OR firstName LIKE '%".$searchTerm."%' OR lastName LIKE '%".$searchTerm."%' OR groupID LIKE '%".$searchTerm."%')";
 		break;
 	}
@@ -19,7 +19,13 @@ function search($searchTerm, $searchFor, $conn){
 	}
 	return $array;
 }
+/**
+*Forum search. Returns array.
+**/
 function searchForum($searchTerm, $searchFor, $conn, $group){
+	$searchTerm = mysqli_real_escape_string($conn, $searchTerm);
+	$searchFor = mysqli_real_escape_string($conn, $searchFor);
+	//Making sure that admin can search the entire forum, while students can search for posts relevant to their groups
 	if ($group ==null){
 		$query = "SELECT * FROM Forum WHERE (postID LIKE '%".$searchTerm."%' OR student_ID LIKE '%".$searchTerm."%' OR post LIKE '%".$searchTerm."%')";
 	} else {

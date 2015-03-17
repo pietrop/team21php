@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html>
 <head>
@@ -57,13 +55,14 @@
                 	<button type="submit" class="btn btn-primary"> Sign in </button>
                 </div>
                 <div class="col-xs-offset-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 ">
-                	<a href="../groupstudent/insert.php"><button type="button" class="btn btn-default"> Register </button></a>
+                	<a href="register.php"><button type="button" class="btn btn-default"> Register </button></a>
                 </div>
                 </div>
             </div>
         </form>
         <?php
 			if (isset($_GET['invalid'])){
+				echo '<!--Error message-->';
 				echo '<div class="container">';
 				switch($_GET['invalid']){
 					case 1: 	echo '<p class="text-center text-danger"> Invalid email or password, please try again </p>';

@@ -14,24 +14,9 @@
 	<div class="container">
         <h2>Database Project: Groups</h2>
     </div>
-    <form class="form-inline" action="groups.php" method="post">
-		<?php include "../search/searchForm.php"; ?>
-        <input type="hidden" name="searchFor" value="student">
-        <?php 
-			if(isset($_POST['submit']) && $_POST['search'] != ''){
-		?>
-		<div class="form-group">
-			<a href="groups.php"><button type="button" class="btn btn-default">Reset</button></a>
-		</div>
-		<?php	
-		}
-		?>
-    </form>
 <?php
 	//Retrieving GROUPS list
 	if(!isset($_POST['search'])){
-		//Old query without querying mysql VIEWS
-		//$whichGroupQuery = "SELECT students.email, groups.groupID FROM `students` INNER JOIN groups WHERE students.email=groups.student_ID";
 		$whichGroupQuery = "SELECT * FROM studentsWithGroupID";
 		$showResult = $conn->query($whichGroupQuery);
 		while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){

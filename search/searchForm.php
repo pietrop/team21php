@@ -1,3 +1,4 @@
+<?php //Reusable part of the search form ?>
 <div class="form-group">
     <input type="search" class="form-control" name="search" id="search" <?php if(isset($_POST['search'])){
      echo 'value="'.$_POST['search'].'"';	

@@ -19,16 +19,11 @@
 
   $query =sprintf('SELECT * FROM `reports` WHERE group_ID='.$_SESSION['group'].';');
   $showResult = $conn->query($query);
-  // print_r($showResult);
-  // print_r($_SESSION['group']);
-  // print_r($_SESSION);
+  if(mysqli_num_rows($showResult)>0){
+	  
   while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){ 
     $newReport = new Report($row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
        // print_r($newReport);
-  }
-
-  if ($newReport == null){
-    echo "<br><p class='text-warning'>You don't have a report, add a new report</p>";
   }
   
 
@@ -143,5 +138,8 @@ echo $newReport->getReview2();
 
    <!-- </div> -->
 <?php
+  } else {
+	  echo "<br><p class='text-danger'>You don't have a report, add a new report</p>";
+  }
 	include "../navbar/footer.php";
 ?>
