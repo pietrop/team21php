@@ -13,11 +13,11 @@
 <?php
   include "report.php";
   include "../assessment/assessment.php";
-
+  //Quering database for report associated with current user, using group id stored in current session
   $query =sprintf('SELECT * FROM `reports` WHERE group_ID='.$_SESSION['group']);
   $showResult = $conn->query($query);
   if(mysqli_num_rows($showResult)>0){
-	  
+	  // only creating object of report for last uploaded report.
   while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){ 
     $newReport = new Report($row['group_ID'], $row['abstract'],$row['review1'],$row['review2']);
        // print_r($newReport);
@@ -33,36 +33,26 @@
   
     <div class="panel-body">
     	<h4 class="list-group-item-heading">Abstract</h4>
-     <p> 
-<?php 
-
-echo $newReport->getAbstract();
-?>
-     </p>
+      <!-- Displaying report abstract field -->
+     <p> <?php  echo $newReport->getAbstract(); ?> </p>
     </div>
     <hr>
     <div class="panel-body">
     	  	<h4 class="list-group-item-heading">Review One</h4>
-    <p> 
-<?php 
-echo $newReport->getReview1();
-?>
-    </p>
+          <!-- Displaying report review 1 field -->
+    <p> <?php echo $newReport->getReview1();?></p>
     </div>
     <hr>
      <div class="panel-body">
      	  	<h4 class="list-group-item-heading">Review Two</h4>
-      <p> 
-<?php 
-echo $newReport->getReview2();
-?>
-      </p>
+                <!-- Displaying report review 2 field -->
+      <p> <?php echo $newReport->getReview2();?></p>
     </div>
   </div>
 
 <hr>
 
-  <!-- Asssesments -->
+  <!-- Asssesments Rankings -->
 
 <h1>Assesments</h1>
 <h2>Ranking - 
@@ -91,25 +81,18 @@ echo $newReport->getReview2();
 
  <div class="row">
       <div>
-       
       <hr>
     <div class="panel panel-primary">
-    <div class="panel-heading"> <h4>Peer assessments on your report  </h4>
-       
-    
+    <div class="panel-heading"> <h4>Peer assessments on your report  </h4> 
 </div> <!-- panel heading -->
 <div class="panel-body">
- 
    <?php
           for($i =0; $i<sizeof($comment);$i++){
-            echo "<h4> Criteria: ".$criteria[$i]." Mark: ".$mark[$i]."</h4> \n";
-          
+            echo "<h4> Criteria: ".$criteria[$i]." Mark: ".$mark[$i]."</h4> \n";      
     ?>
-
   <h4> Comment:</h4>
   <p>
     <?php
-
      echo "$comment[$i]\n";
           $thisAssessment = $assessmentID[$i];
           $query = "SELECT group_ID FROM groupreportassessment WHERE assessmentID = ".$thisAssessment.";";
@@ -120,20 +103,12 @@ echo $newReport->getReview2();
           echo "<br><strong> The current average marks of this assessor group is $thisGroupsMarks. </strong>";
           echo "<hr>";
           }
-
           ?>
-
         </p>
-     </div> <!--     panel-body -->
-  </div> <!--  panel primary -->
-
-         
-    
-
+        </div> <!--     panel-body -->
+      </div> <!--  panel primary -->
       </div> <!-- col-9 -->
- </div> <!-- row -->
-
-   <!-- </div> -->
+    </div> <!-- row -->
 <?php
   } else {
 	  echo "<br><p class='text-danger'>You don't have a report, add a new report</p>";

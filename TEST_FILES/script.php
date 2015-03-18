@@ -119,28 +119,49 @@
 		$conn->query($sql);
 		echo $sql; 
 		echo "<br><br>";  
-		$sql = "INSERT INTO `forum`( `student_ID`,`post`) VALUES ('a@b.com','This is forum for user a@b.com ONE')";
+		$sql = "INSERT INTO `forum`( `student_ID`,`post`) VALUES ('a@b.com','Hello team')";
 		$conn->query($sql);
 		echo $sql; 
 		echo "<br><br>";  
-		$sql = "INSERT INTO `forum`( `student_ID`, `parentPost_ID`,`post`) VALUES ('a@b.com',1,'This is forum for user a@b.com TWO')";
+		$sql = "INSERT INTO `forum`( `student_ID`, `parentPost_ID`,`post`) VALUES ('averageStudent@me.com',1,'Hello AB!')";
 		$conn->query($sql);
 		echo $sql; 
 		echo "<br><br>";  
-		$sql = "INSERT INTO `forum`( `student_ID`, `parentPost_ID`,`post`) VALUES ('a@b.com',2,'This is forum for user a@b.com THREE')";
+		$sql = "INSERT INTO `forum`( `student_ID`, `parentPost_ID`,`post`) VALUES ('bestStudent@me.com',2,'Hi AB and averageStudent')";
 		echo $sql; 
 		echo "<br><br>";  
 		$conn->query($sql);
-		$sql = "INSERT INTO `forum`( `student_ID`,`post`) VALUES ('bestStudent@me.com','This is forum for user a@b.com FOUR')";
-		echo $sql; 
-		echo "<br><br>";  
-		$conn->query($sql);
-
-		$sql = "INSERT INTO `forum`( `student_ID`,`parentPost_ID`,`post`) VALUES ('bestStudent@me.com',4,'This is forum for user a@b.com FIVE')";
+		$sql = "INSERT INTO `forum`( `student_ID`,`post`) VALUES ('bestStudent@me.com','New Thread Post')";
 		echo $sql; 
 		echo "<br><br>";  
 		$conn->query($sql);
 
+
+
+		//Different Group nurbakimovaset@mail.ru  poorStudent@me.com
+
+		$sql = "INSERT INTO `forum`( `student_ID`,`post`) VALUES ('poorStudent@me.com','Hello...')";
+		echo $sql; 
+		echo "<br><br>";  
+		$conn->query($sql);
+
+		$sql = "INSERT INTO `forum`( `student_ID`,`parentPost_ID`,`post`) VALUES ('nurbakimovaset@mail.ru ',5,'..World')";
+		echo $sql; 
+		echo "<br><br>";  
+		$conn->query($sql);
+
+
+//gmail@gmail.com  example@me.com
+
+		$sql = "INSERT INTO `forum`( `student_ID`,`post`) VALUES ('gmail@gmail.com','Do we have any preer review assessments yet?')";
+		echo $sql; 
+		echo "<br><br>";  
+		$conn->query($sql);
+
+		$sql = "INSERT INTO `forum`( `student_ID`,`parentPost_ID`,`post`) VALUES ('example@me.com ',7,'I do not know')";
+		echo $sql; 
+		echo "<br><br>";  
+		$conn->query($sql);
 
 		//****END OF QUERY****
 	
