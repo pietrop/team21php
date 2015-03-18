@@ -1,39 +1,31 @@
 <?php
 	include "../navbar/navbar.php";
 	include "../admin/createAdminTables.php";
-	include "../search/search.php";
 	if (!isAdmin()){
 		include "../login/redirectToNotAllowed.php";	
 	}
 ?>
 <main>
-<br>
-<br>
-<br>
-<div class="container">
-	<div class="container">
-        <h2>Database Project: Groups</h2>
+    <div class="container">
+        <div class="container">
+            <h2>Database Project: Groups</h2>
+        </div>
+		<?php
+            //Retrieving GROUPS list
+			$whichGroupQuery = "SELECT * FROM studentsWithGroupID ORDER BY groupID";
+			$showResult = $conn->query($whichGroupQuery);
+			while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
+				$groupsArray[] = $row; //Populating array which will be used for table creation
+			}
+            if (isset($groupsArray)){
+                createGroupTable($groupsArray); //generates table
+            } else {
+                echo '<div class="container"><strong>There is no groups</strong></div>';	
+            }
+        ?>
     </div>
-<?php
-	//Retrieving GROUPS list
-	if(!isset($_POST['search'])){
-		$whichGroupQuery = "SELECT * FROM studentsWithGroupID ORDER BY groupID";
-		$showResult = $conn->query($whichGroupQuery);
-		while ($row = $showResult->fetch_array(MYSQLI_ASSOC)){
-			$groupsArray[] = $row;
-		}
-	} else {
-		$groupsArray = search($_POST['search'], $_POST['searchFor'], $conn);	
-	}
-	if (isset($groupsArray)){
-		createGroupTable($groupsArray);
-	} else {
-		echo '<div class="container"><strong>No results</strong></div>';	
-	}
-?>
-</div>
-<a class="btn btn-primary" href="rankedGroups.php">Show Group Rankings</a>
-
+    <br>
+    <a class="btn btn-primary" href="rankedGroups.php">Show Group Rankings</a>
 </main>
 
 <?php

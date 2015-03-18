@@ -26,9 +26,7 @@
 			?>
         </form>
         
-        <!--RETRIEVEING STUDENT LIST FROM DATABASE-->
         <?php
-
             //Retrieving students and groups from DB and storing in an Array
 			if (!isset($_POST['search'])){
 				$query = "SELECT * from studentsWithGroupID";
