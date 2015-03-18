@@ -14,10 +14,7 @@
   include "report.php";
   include "../assessment/assessment.php";
 
-  $conn = connectToDb();
-  $conn->select_db("team21");
-
-  $query =sprintf('SELECT * FROM `reports` WHERE group_ID='.$_SESSION['group'].';');
+  $query =sprintf('SELECT * FROM `reports` WHERE group_ID='.$_SESSION['group']);
   $showResult = $conn->query($query);
   if(mysqli_num_rows($showResult)>0){
 	  

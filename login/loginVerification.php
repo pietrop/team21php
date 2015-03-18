@@ -46,7 +46,7 @@
 			
 		} else { //IF GENERAL LOGIN ATTEMTED
 		
-			$query = "SELECT * FROM students AS s LEFT JOIN groups AS g WHERE s.email='$email' AND s.password='$password' 
+			$query = "SELECT * FROM students AS s JOIN groups AS g WHERE s.email='$email' AND s.password='$password' 
 			AND g.student_ID='$email'";
 			$result = $conn->query($query);
 			if (mysqli_num_rows($result) == 1) {
