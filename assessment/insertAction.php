@@ -1,5 +1,6 @@
  <?php
 	include "assessment.php";
+	include "../dbConnect.php";
 	//assessment
 	$assessment = new assessment($_POST['assessmentID'], $_POST['criteria'], $_POST['mark'], $_POST['comment']);
 	//****DATABASE CONNECTION
@@ -10,7 +11,6 @@
 	$query = $assessment->createInsertQuery();
 	$conn->query($query);
 ?>
-
 <!-- redirects using js -->
 <script>
 	location.href = "../report/myReportsToAssess.php";
