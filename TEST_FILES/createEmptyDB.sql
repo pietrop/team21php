@@ -57,7 +57,7 @@ CREATE TABLE `assessments` (
 
 CREATE TABLE `forum` (
 `postID` int(11) NOT NULL,
-  `student_ID` int(11) NOT NULL,
+  `student_ID` varchar(50) NOT NULL,
   `parentPost_ID` int(11) DEFAULT NULL,
   `post` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
