@@ -1,4 +1,8 @@
 <?php
+	//*****This script is requried to test Peer Review System*****
+	//*****It requires database and all the required tables to exist already*****
+	//*****For database and tables creation use sql script "createEmptyDB.sql"*****
+	
 	include "../dbConnect.php";
 
 	//****DATABASE CONNECTION
