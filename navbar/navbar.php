@@ -1,18 +1,17 @@
 <?php
- include "../dbConnect.php";
- include "../login/loggedIn.php";
- session_start();
- //Checking if user logged in
- if (!loggedIn()){
-	include "../login/redirect.php";	 
- }
- //****DATABASE CONNECTION
-$conn = connectToDb();
-$conn->select_db("team21");
-//****END OF CONNECTION PROCEDURE****
-
-$admin = $_SESSION['admin'];
-
+	include "../dbConnect.php";
+	include "../login/loggedIn.php";
+	session_start();
+	//Checking if user logged in
+	if (!loggedIn()){
+		include "../login/redirect.php";	 
+	}
+	//****DATABASE CONNECTION
+	$conn = connectToDb();
+	$conn->select_db("team21");
+	//****END OF CONNECTION PROCEDURE****
+	
+	$admin = $_SESSION['admin'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +75,6 @@ $admin = $_SESSION['admin'];
                 <li><a href="../groupstudent/groups.php">Groups</a></li>
                 <li><a href="../report/indexReportNew.php">Reports</a></li>
                 <li><a href="../groupReportAssessment/showAssessments.php">Assign assessments</a></li>
-                <!-- <li><a href="../forum/index.php">Forum</a></li> -->
               <?php 
 			  }  
 			  ?>

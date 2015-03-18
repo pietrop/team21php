@@ -55,5 +55,5 @@ include "../navbar/navbar.php";
     </div>
 </main>
 <?php
-include "../navbar/footer.php";
+	include "../navbar/footer.php";
 ?>

@@ -2,12 +2,9 @@
 /**
 * Class to represent all report related information in a Report 
 * object
-* @author: Pietro
-* @date: 13Feb2015
 */
 
 class Report{
-				//which one is primary key in report?
 	var $reportID;  
 	var $group_ID;
 	var $abstract;
@@ -16,7 +13,6 @@ class Report{
 
 
 function __construct($group_ID, $abstract, $review1,$review2){
-		// $this->reportID = $reportID;
 		$this->group_ID = $group_ID;
 		$this->abstract = $abstract;
 		$this->review1 = $review1;
