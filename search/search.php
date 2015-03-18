@@ -9,9 +9,6 @@ function search($searchTerm, $searchFor, $conn){
 		case('student'):
 			$query = "SELECT * FROM `studentsWithGroupID` WHERE (email LIKE '%".$searchTerm."%' OR firstName LIKE '%".$searchTerm."%' OR lastName LIKE '%".$searchTerm."%' OR groupID LIKE '%".$searchTerm."%') ORDER BY groupID";
 		break;
-		case('group'):
-			$query = "SELECT * FROM `studentsWithGroupID` WHERE (email LIKE '%".$searchTerm."%' OR firstName LIKE '%".$searchTerm."%' OR lastName LIKE '%".$searchTerm."%' OR groupID LIKE '%".$searchTerm."%') ORDER BY groupID";
-		break;
 	}
 	$result = $conn->query($query);
 	while ($row = $result->fetch_array(MYSQLI_ASSOC)){
