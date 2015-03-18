@@ -1,9 +1,9 @@
 <?php
 	function connectToDB(){
-		static $conn;
-
+		static $conn; //static used to make sure only one connection is created
+		
 		if (!isset($conn)){
-			$config = parse_ini_file("../config.ini");
+			$config = parse_ini_file("../config.ini"); //Sensitive information stored in config.ini file
 			$conn = mysqli_connect($config['hostname'], $config['user'], $config['password']);
 		}
 
