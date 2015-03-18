@@ -34,15 +34,11 @@
 			echo "string";
 			if (($query = $assessment->createInsertQuery()) != null){
 				$result = $conn->query($query);
-				echo "inserted an assessment for group ".$i."to assess group".$assessee."
-				\n";
+				echo "inserted an assessment for group ".$i."to assess group".$assessee."\n";
 			}
     	}
     }
-
-
-
-
-    header("Location: showAssessments.php");
-
 ?>
+<script>
+	location.href="showAssessments.php";
+</script>

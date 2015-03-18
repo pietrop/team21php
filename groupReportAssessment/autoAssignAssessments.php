@@ -26,7 +26,7 @@
 	</select>
 	<br>
 	<input type="checkbox" name="clearPrevious" value="clearPrevious" id="clearPrevious">Clear previous assigned assessments.<br>
-	<BR>
+	<br>
   	<button type="submit" class="btn btn-default">Automatically Assign</button>
 
 </form>

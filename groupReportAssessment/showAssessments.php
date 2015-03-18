@@ -7,8 +7,8 @@
 	$result = $conn->query($query);
 ?>
 <main>
-
 <a data-toggle="collapse" href="#collapse" aria-expanded="false" aria-controls="collapse" class="btn btn-success btn-sm">Add new assessment</a> 
+<!--Assessments assignment forms-->
 <div class="container well collapse" id="collapse">
   <form role ="form" action="indexGroupReportAssessment.php" method="post">            
     <div class='form-group'>
@@ -73,34 +73,35 @@
 	}
 	$newAssessmentArray[$prevGroup] = $newArray;
 ?>
-<div class="container">
-    <table class="table">
-        <tr>
-            <td> Group </td>
-            <td> Assesses </td>
-        </tr>
-        <?php
-            $arraySize = count($newAssessmentArray);
-            for($i = 1; $i<=$arraySize; $i++){
-                if (isset($newAssessmentArray[$i])){
-        ?>
-        <tr>
-            <td> <?php echo $i?> </td>
-            <td> <?php
-                    for ($j=0; $j<count($newAssessmentArray[$i]); $j++){
-                        echo '<span style="padding-right: 10px;">';
-                        echo $newAssessmentArray[$i][$j];	
-                        echo "</span>";
+    <div class="container">
+        <table class="table">
+            <tr>
+                <td> Group </td>
+                <td> Assesses </td>
+            </tr>
+            <?php
+                //Making sure that asseessees are displayed inside in a row in one column
+                $arraySize = count($newAssessmentArray);
+                for($i = 1; $i<=$arraySize; $i++){
+                    if (isset($newAssessmentArray[$i])){
+            ?>
+            <tr>
+                <td> <?php echo $i?> </td>
+                <td> <?php
+                        for ($j=0; $j<count($newAssessmentArray[$i]); $j++){
+                            echo '<span style="padding-right: 10px;">'; //CSS padding applied, so that individual groups are separated
+                            echo $newAssessmentArray[$i][$j];	
+                            echo "</span>";
+                        }
+                    ?></td>
+            <?php
+                    } else {
+                        $arraySize++;	
                     }
-                ?></td>
-        <?php
-                } else {
-                    $arraySize++;	
                 }
-            }
-        ?>
-    </table>
-</div>
+            ?>
+        </table>
+    </div>
 </main>
 
 <?php

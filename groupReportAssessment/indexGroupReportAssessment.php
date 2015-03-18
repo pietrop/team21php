@@ -1,42 +1,25 @@
 <?php
-include "../navbar/navbar.php";
-include "groupReportAssessment.php";
-?>
-  <h1>You have assigned a peer assessment</h1>
-
-
-<?php
-// if(isset($_POST['assessor'])){
-  $assessor = $_POST['assessor'];
+	include "../navbar/navbar.php";
+	include "groupReportAssessment.php";
+	
+	//Retrieving assessor and assessee values
+	$assessor = $_POST['assessor'];
 	$assessee = $_POST['assessee'];
-
+	
 	$query = "SELECT reports.reportID  FROM reports WHERE reports.group_ID =". $assessee;	
 	$result = $conn->query($query);
-  $row = $result->fetch_array(MYSQLI_ASSOC);
-  $reportID = $row['reportID'];
+	//While loop is required to ensure that only the latest report is assessed
+	while($row = $result->fetch_array(MYSQLI_ASSOC)){
+		$reportID = $row['reportID'];
+	}
+	//Creating groupreportassessment object
 	$assessment = new GroupReportAssessment($assessor, $reportID);
-
-	
-	//$query = 'INSERT INTO groupreportassessment(email, firstName, lastName, password) VALUES ("'.$email.'","b","c","d")';
+	//Inserting to the database
 	if (($query = $assessment->createInsertQuery()) != null){
 		$result = $conn->query($query);
-		//$row = mysql_fetch_array($result);
-		//print_r($row);
-    //echo "Group ".$assessor." is reviewing Group ".$assessee;
-	?>
-	<script>
-		location.href="showAssessments.php";
-	</script>
-	<?php 
 	}
-
-
-// }
-// else{
-// 	//you handle the exception
-// 	echo "Could not create an assessment. Please try again.";
-// }
-
-include "../navbar/footer.php";
-
+	include "../navbar/footer.php";
 ?>
+<script>
+	location.href="showAssessments.php";
+</script>
